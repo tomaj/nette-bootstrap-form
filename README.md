@@ -3,8 +3,8 @@ Nette bootstrap form renderer
 
 Simple nette bootstrap form renderers.
 
-Instalation
------------
+Installation
+------------
 
 ```sh
 composer require tomaj/nette-bootstrap-form
