@@ -22,7 +22,7 @@ class BootstrapRenderer extends DefaultFormRenderer
             'description' => 'p',
         ),
         'controls' => array(
-            'container' => 'div class=col-sm-12',
+            'container' => 'div',
         ),
         'pair' => array(
             'container' => 'div class=form-group',
@@ -52,7 +52,7 @@ class BootstrapRenderer extends DefaultFormRenderer
             'requiredsuffix' => '',
         ),
         'hidden' => array(
-            'container' => 'div class=col-sm-12',
+            'container' => 'div',
         ),
     );
 
