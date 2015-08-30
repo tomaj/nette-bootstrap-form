@@ -68,8 +68,10 @@ class BootstrapRenderer extends DefaultFormRenderer
         $form->getElementPrototype()->setNovalidate('novalidate');
         foreach ($form->getControls() as $control) {
             if ($control instanceof Controls\Button) {
-                $control->getControlPrototype()->addClass(empty($usedPrimary) ? 'btn btn-primary' : 'btn btn-default');
-                $usedPrimary = true;
+                if (strpos($control->getControlPrototype()->getClass(), 'btn') === FALSE) {
+                    $control->getControlPrototype()->addClass(empty($usedPrimary) ? 'btn btn-primary' : 'btn btn-default');
+                    $usedPrimary = true;
+                }
             } elseif ($control instanceof Controls\TextBase ||
                 $control instanceof Controls\SelectBox ||
                 $control instanceof Controls\MultiSelectBox) {
