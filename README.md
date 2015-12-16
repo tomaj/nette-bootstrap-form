@@ -17,7 +17,7 @@ Usage
 use Tomaj\Form\Renderer\BootstrapRenderer;
 
 $form = \Nette\Application\UI\Form();
-$form->addRenderer(new BootstrapRenderer());
+$form->setRenderer(new BootstrapRenderer());
 ```
 
 For inline form you can use ```Tomaj\Form\Renderer\BootstrapInlineRenderer```
