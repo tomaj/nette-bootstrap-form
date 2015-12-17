@@ -16,8 +16,8 @@ Usage
 ```php
 use Tomaj\Form\Renderer\BootstrapRenderer;
 
-$form = \Nette\Application\UI\Form();
-$form->addRenderer(new BootstrapRenderer());
+$form = \Nette\Application\UI\Form;
+$form->setRenderer(new BootstrapRenderer);
 ```
 
 For inline form you can use ```Tomaj\Form\Renderer\BootstrapInlineRenderer```
