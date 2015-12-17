@@ -15,8 +15,9 @@ Usage
 
 ```php
 use Tomaj\Form\Renderer\BootstrapRenderer;
+use Nette\Application\UI\Form;
 
-$form = \Nette\Application\UI\Form;
+$form = new Form;
 $form->setRenderer(new BootstrapRenderer);
 ```
 
