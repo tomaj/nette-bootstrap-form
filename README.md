@@ -22,3 +22,5 @@ $form->setRenderer(new BootstrapRenderer);
 ```
 
 For inline form you can use ```Tomaj\Form\Renderer\BootstrapInlineRenderer```
+
+For vertical form (bootstrap default) you can use ```Tomaj\Form\Renderer\BootstrapVerticalRenderer```
