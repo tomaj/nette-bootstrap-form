@@ -64,8 +64,6 @@ class BootstrapVerticalRenderer extends DefaultFormRenderer
      */
     public function render(Nette\Forms\Form $form, $mode = null)
     {
-        $form->getElementPrototype()->setNovalidate('novalidate');
-
         $usedPrimary = FALSE;
         foreach ($form->getControls() as $control) {
             if ($control instanceof Controls\Button) {
