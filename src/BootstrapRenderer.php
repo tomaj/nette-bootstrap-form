@@ -56,13 +56,13 @@ class BootstrapRenderer extends DefaultFormRenderer
         ),
     );
 
-	/** @var bool */
-	private $novalidate;
+    /** @var bool */
+    private $novalidate;
 
-	public function __construct($novalidate = true)
-	{
-		$this->novalidate = $novalidate;
-	}
+    public function __construct($novalidate = true)
+    {
+        $this->novalidate = $novalidate;
+    }
 
     /**
      * Provides complete form rendering.
@@ -74,9 +74,9 @@ class BootstrapRenderer extends DefaultFormRenderer
     {
         $form->getElementPrototype()->addClass('form-horizontal');
 
-	    if ($this->novalidate) {
-		    $form->getElementPrototype()->setNovalidate('novalidate');
-	    }
+        if ($this->novalidate) {
+            $form->getElementPrototype()->setNovalidate('novalidate');
+        }
 
         foreach ($form->getControls() as $control) {
             if ($control instanceof Controls\Button) {
