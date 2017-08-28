@@ -56,6 +56,14 @@ class BootstrapVerticalRenderer extends DefaultFormRenderer
         ),
     );
 
+    /** @var bool */
+    private $novalidate;
+
+    public function __construct($novalidate = true)
+    {
+        $this->novalidate = $novalidate;
+    }
+
     /**
      * Provides complete form rendering.
      * @param  Nette\Forms\Form
@@ -64,7 +72,9 @@ class BootstrapVerticalRenderer extends DefaultFormRenderer
      */
     public function render(Nette\Forms\Form $form, $mode = null)
     {
-        $form->getElementPrototype()->setNovalidate('novalidate');
+        if ($this->novalidate) {
+            $form->getElementPrototype()->setNovalidate('novalidate');
+        }
 
         $usedPrimary = FALSE;
         foreach ($form->getControls() as $control) {
