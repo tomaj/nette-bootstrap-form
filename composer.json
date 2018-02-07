@@ -1,7 +1,7 @@
 {
     "name": "tomaj/nette-bootstrap-form",
     "description": "Nette bootstrap form renderer",
-    "license": "LGPL",
+    "license": "LGPL-2.0-or-later",
     "keywords": ["nette", "form", "bootstrap", "renderer"],
     "authors": [
         {
