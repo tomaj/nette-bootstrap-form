@@ -2,36 +2,42 @@
 
 namespace Tomaj\Form\Renderer;
 
-use Nette;
+use Nette\Forms\Controls\Button;
+use Nette\Forms\Controls\Checkbox;
+use Nette\Forms\Controls\CheckboxList;
+use Nette\Forms\Controls\MultiSelectBox;
+use Nette\Forms\Controls\RadioList;
+use Nette\Forms\Controls\SelectBox;
+use Nette\Forms\Controls\TextBase;
+use Nette\Forms\Form;
 use Nette\Forms\Rendering\DefaultFormRenderer;
-use Nette\Forms\Controls;
 
 class BootstrapInlineRenderer extends DefaultFormRenderer
 {
-    public $wrappers = array(
-        'form' => array(
+    public $wrappers = [
+        'form' => [
             'container' => '',
-        ),
-        'error' => array(
+        ],
+        'error' => [
             'container' => 'div class="alert alert-danger"',
             'item' => 'p',
-        ),
-        'group' => array(
+        ],
+        'group' => [
             'container' => 'fieldset',
             'label' => 'legend',
             'description' => 'p',
-        ),
-        'controls' => array(
+        ],
+        'controls' => [
             'container' => '',
-        ),
-        'pair' => array(
+        ],
+        'pair' => [
             'container' => 'div class=form-group',
             '.required' => 'required',
             '.optional' => null,
             '.odd' => null,
             '.error' => 'has-error',
-        ),
-        'control' => array(
+        ],
+        'control' => [
             'container' => null,
             '.odd' => null,
             'description' => 'span class=help-block',
@@ -45,32 +51,26 @@ class BootstrapInlineRenderer extends DefaultFormRenderer
             '.submit' => 'button',
             '.image' => 'imagebutton',
             '.button' => 'button',
-        ),
-        'label' => array(
+        ],
+        'label' => [
             'container' => '',
             'suffix' => null,
             'requiredsuffix' => '',
-        ),
-        'hidden' => array(
+        ],
+        'hidden' => [
             'container' => 'div',
-        ),
-    );
+        ],
+    ];
 
     /** @var bool */
     private $novalidate;
 
-    public function __construct($novalidate = true)
+    public function __construct(bool $novalidate = true)
     {
         $this->novalidate = $novalidate;
     }
 
-    /**
-     * Provides complete form rendering.
-     * @param  Nette\Forms\Form
-     * @param  string 'begin', 'errors', 'ownerrors', 'body', 'end' or empty to render all
-     * @return string
-     */
-    public function render(Nette\Forms\Form $form, $mode = null)
+    public function render(Form $form, string $mode = null): string
     {
         $form->getElementPrototype()->addClass('form-inline');
 
@@ -79,18 +79,18 @@ class BootstrapInlineRenderer extends DefaultFormRenderer
         }
 
         foreach ($form->getControls() as $control) {
-            if ($control instanceof Controls\Button) {
-                if (strpos($control->getControlPrototype()->getClass(), 'btn') === FALSE) {
+            if ($control instanceof Button) {
+                if (strpos($control->getControlPrototype()->getClass(), 'btn') === false) {
                     $control->getControlPrototype()->addClass(empty($usedPrimary) ? 'btn btn-primary' : 'btn btn-default');
                     $usedPrimary = true;
                 }
-            } elseif ($control instanceof Controls\TextBase ||
-                $control instanceof Controls\SelectBox ||
-                $control instanceof Controls\MultiSelectBox) {
+            } elseif ($control instanceof TextBase ||
+                $control instanceof SelectBox ||
+                $control instanceof MultiSelectBox) {
                 $control->getControlPrototype()->addClass('form-control');
-            } elseif ($control instanceof Controls\Checkbox ||
-                $control instanceof Controls\CheckboxList ||
-                $control instanceof Controls\RadioList) {
+            } elseif ($control instanceof Checkbox ||
+                $control instanceof CheckboxList ||
+                $control instanceof RadioList) {
                 $control->getSeparatorPrototype()->setName('div')->addClass($control->getControlPrototype()->type);
             }
         }
