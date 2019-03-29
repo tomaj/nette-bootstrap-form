@@ -11,8 +11,8 @@
         }
     ],
     "require": {
-        "php": ">= 5.3.7",
-        "nette/forms": "~2.3"
+        "php": ">= 7.1.0",
+        "nette/forms": "^3.0"
     },
     "autoload": {
         "classmap": [
