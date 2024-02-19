@@ -14,7 +14,7 @@ use Nette\Forms\Rendering\DefaultFormRenderer;
 
 class BootstrapInlineRenderer extends DefaultFormRenderer
 {
-    public $wrappers = [
+    public array $wrappers = [
         'form' => [
             'container' => '',
         ],
