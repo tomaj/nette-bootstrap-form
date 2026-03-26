@@ -70,7 +70,7 @@ class BootstrapInlineRenderer extends DefaultFormRenderer
         $this->novalidate = $novalidate;
     }
 
-    public function render(Form $form, string $mode = null): string
+    public function render(Form $form, ?string $mode = null): string
     {
         $form->getElementPrototype()->addClass('form-inline');
 
