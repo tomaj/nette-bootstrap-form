@@ -70,7 +70,7 @@ class BootstrapVerticalRenderer extends DefaultFormRenderer
         $this->novalidate = $novalidate;
     }
 
-    public function render(Form $form, string $mode = null): string
+    public function render(Form $form, ?string $mode = null): string
     {
         if ($this->novalidate) {
             $form->getElementPrototype()->setNovalidate('novalidate');
