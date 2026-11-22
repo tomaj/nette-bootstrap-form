@@ -5,7 +5,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 ## [Unreleased][unreleased]
 
 ### Changed
-- **BREAKING CHANGE**: minimum PHP version raised from 7.1 to 8.3 (`"php": "^8.3"`). The package already needed PHP 8.1+ through nette/forms 3.2. ([#20](https://github.com/tomaj/nette-bootstrap-form/pull/20))
+- **BREAKING CHANGE**: minimum PHP version raised from 7.1 to 8.4 (`"php": "^8.4"`). The package already needed PHP 8.1+ through nette/forms 3.2. Stay on 2.x for older PHP versions. ([#20](https://github.com/tomaj/nette-bootstrap-form/pull/20), [#24](https://github.com/tomaj/nette-bootstrap-form/issues/24))
 - `Checkbox` controls use `getContainerPrototype()` instead of the deprecated `getSeparatorPrototype()` alias (same element, no change in output). ([#20](https://github.com/tomaj/nette-bootstrap-form/pull/20))
 - Autoloading uses PSR-4 (`Tomaj\Form\Renderer\` → `src/`) instead of a classmap. Class names are unchanged. ([#21](https://github.com/tomaj/nette-bootstrap-form/issues/21))
 - The Composer dist archive contains only `src/`, `composer.json` and the README, CHANGELOG and UPGRADE files; tests, fixtures and tool configs are no longer installed into `vendor/`. ([#21](https://github.com/tomaj/nette-bootstrap-form/issues/21))
@@ -15,7 +15,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Added
 - PHPUnit test suite that renders forms with all three renderers and compares the HTML with the output from before the fix. ([#20](https://github.com/tomaj/nette-bootstrap-form/pull/20))
-- GitHub Actions CI: tests on PHP 8.3–8.6 (plus prefer-lowest, nightly 8.7 allowed to fail), php-cs-fixer (PER-CS), PHPStan level max with strict rules, composer audit. ([#20](https://github.com/tomaj/nette-bootstrap-form/pull/20))
+- GitHub Actions CI: tests on PHP 8.4–8.6 (plus prefer-lowest, nightly 8.7 allowed to fail), php-cs-fixer (PER-CS), PHPStan level max with strict rules, composer audit. ([#20](https://github.com/tomaj/nette-bootstrap-form/pull/20))
 - Dependabot for Composer and GitHub Actions. ([#20](https://github.com/tomaj/nette-bootstrap-form/pull/20))
 - Rector (PHP 8.4 set, dead code, code quality, type declarations, early return), PHP-CS-Fixer with `declare_strict_types`, PHPStan `checkMissingOverrideMethodAttribute` and `checkUninitializedProperties`; composer scripts `rector`, `rector-fix`, `coverage`, `infection` and `check` with descriptions. ([#23](https://github.com/tomaj/nette-bootstrap-form/issues/23))
 - `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md` (supported versions, private vulnerability reporting), `RELEASING.md`, `UPGRADE-3.0.md`, issue and pull request templates. ([#21](https://github.com/tomaj/nette-bootstrap-form/issues/21))
