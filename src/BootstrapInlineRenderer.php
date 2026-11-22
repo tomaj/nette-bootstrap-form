@@ -81,7 +81,7 @@ class BootstrapInlineRenderer extends DefaultFormRenderer
         $usedPrimary = false;
         foreach ($form->getControls() as $control) {
             if ($control instanceof Button) {
-                if (strpos($control->getControlPrototype()->getClass() ?? '', 'btn') === false) {
+                if (!str_contains(self::classString($control->getControlPrototype()->getClass()), 'btn')) {
                     $control->getControlPrototype()->addClass($usedPrimary ? 'btn btn-default' : 'btn btn-primary');
                     $usedPrimary = true;
                 }
@@ -98,5 +98,25 @@ class BootstrapInlineRenderer extends DefaultFormRenderer
         }
 
         return parent::render($form, $mode);
+    }
+
+    /**
+     * The class attribute is a string, or an array of class => enabled after Html::addClass().
+     */
+    private static function classString(mixed $class): string
+    {
+        if (is_array($class)) {
+            $classes = [];
+            foreach ($class as $name => $value) {
+                if ($value === true) {
+                    $classes[] = (string) $name;
+                } elseif (is_string($value) && $value !== '') {
+                    $classes[] = $value;
+                }
+            }
+            return implode(' ', $classes);
+        }
+
+        return is_string($class) ? $class : '';
     }
 }

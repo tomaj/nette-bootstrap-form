@@ -1,0 +1,53 @@
+<form action="" method="post" class="form-horizontal" novalidate="novalidate">
+
+<div>
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-name">Name</label></div>
+
+	<div class="col-sm-9"><input type="text" name="name" placeholder="Your name" class="form-control text" id="frm-name" value='John <Doe> &amp; "Co"'></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-password">Password</label></div>
+
+	<div class="col-sm-9"><input type="password" name="password" class="form-control text" id="frm-password"></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-email">E-mail</label></div>
+
+	<div class="col-sm-9"><input type="email" name="email" class="form-control" id="frm-email" data-nette-rules='[{"op":":email","msg":"Please enter a valid email address."}]'></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-age">Age</label></div>
+
+	<div class="col-sm-9"><input type="number" name="age" class="form-control" id="frm-age" data-nette-rules='[{"op":":integer","msg":"Please enter a valid integer."}]'></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-nolabel"></label></div>
+
+	<div class="col-sm-9"><input type="text" name="nolabel" class="form-control text" id="frm-nolabel"></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-described">Described</label></div>
+
+	<div class="col-sm-9"><input type="text" name="described" class="form-control text" id="frm-described"> <span class="help-block">Some help text</span></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-html_described">HTML described</label></div>
+
+	<div class="col-sm-9"><input type="text" name="html_described" class="form-control text" id="frm-html_described"> Help with <code>code</code></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-disabled">Disabled</label></div>
+
+	<div class="col-sm-9"><input type="text" name="disabled" class="form-control text" id="frm-disabled" disabled></div>
+</div>
+</div>
+
+</form>

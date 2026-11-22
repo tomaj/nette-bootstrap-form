@@ -1,0 +1,41 @@
+<form action="" method="post" class="form-horizontal" novalidate="novalidate">
+
+<div>
+<div class="form-group required">
+	<div class="col-sm-3 control-label"><label for="frm-name" class="required">Name</label></div>
+
+	<div class="col-sm-9"><input type="text" name="name" class="form-control text" id="frm-name" required data-nette-rules='[{"op":":filled","msg":"Please fill in your name."}]'></div>
+</div>
+
+<div class="form-group required">
+	<div class="col-sm-3 control-label"><label for="frm-email" class="required">E-mail</label></div>
+
+	<div class="col-sm-9"><input type="email" name="email" class="form-control" id="frm-email" required data-nette-rules='[{"op":":filled","msg":"This field is required."},{"op":":email","msg":"Please enter a valid email address."}]'></div>
+</div>
+
+<div class="form-group required">
+	<div class="col-sm-3 control-label"></div>
+
+	<div class="col-sm-9"><div class="checkbox"><label for="frm-terms"><input type="checkbox" name="terms" id="frm-terms" required data-nette-rules='[{"op":":filled","msg":"You must agree."}]'>Terms</label></div></div>
+</div>
+
+<div class="form-group required">
+	<div class="col-sm-3 control-label"><label for="frm-size" class="required">Size</label></div>
+
+	<div class="col-sm-9"><select name="size" class="form-control" id="frm-size" required data-nette-rules='[{"op":":filled","msg":"This field is required."}]'><option value="s">S</option><option value="m">M</option></select></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-optional">Optional</label></div>
+
+	<div class="col-sm-9"><input type="text" name="optional" class="form-control text" id="frm-optional"></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"></div>
+
+	<div class="col-sm-9"><input type="submit" name="send" class="btn btn-primary button" value="Send"></div>
+</div>
+</div>
+
+</form>

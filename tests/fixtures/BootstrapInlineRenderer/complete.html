@@ -1,0 +1,72 @@
+<form action="/submit" method="post" id="frm-complete" class="form-inline" novalidate="novalidate">
+
+<div class="alert alert-danger">
+	<p>Please correct the errors.</p>
+</div>
+
+
+<fieldset>
+<legend>Account</legend>
+
+
+<div class="form-group required has-error">
+	<label for="frm-complete-login" class="required">Login</label>
+
+	<input type="text" name="login" class="form-control text" id="frm-complete-login" required data-nette-rules='[{"op":":filled","msg":"Login is required."}]'>
+	<span class="help-block">Login is taken.</span>
+</div>
+
+<div class="form-group required">
+	<label for="frm-complete-password" class="required">Password</label>
+
+	<input type="password" name="password" class="form-control text" id="frm-complete-password" required data-nette-rules='[{"op":":filled","msg":"This field is required."},{"op":":minLength","msg":"Too short","arg":8}]'>
+</div>
+
+</fieldset>
+
+<fieldset>
+<legend>Profile</legend>
+
+
+<div class="form-group">
+	<label for="frm-complete-bio">Bio</label>
+
+	<textarea name="bio" class="form-control" id="frm-complete-bio"></textarea>
+</div>
+
+<div class="form-group">
+	<label for="frm-complete-lang">Language</label>
+
+	<select name="lang" class="form-control" id="frm-complete-lang"><option value="en">English</option><option value="sk">Slovak</option></select>
+</div>
+
+<div class="form-group">
+	
+
+	<div class="checkbox"><label for="frm-complete-public"><input type="checkbox" name="public" id="frm-complete-public">Public profile</label></div>
+</div>
+
+<div class="form-group">
+	<label>Roles</label>
+
+	<div class="checkbox"><label><input type="checkbox" name="roles[]" value="admin">Admin</label></div><div class="checkbox"><label><input type="checkbox" name="roles[]" value="user">User</label></div>
+</div>
+
+<div class="form-group">
+	<label>Theme</label>
+
+	<div class="radio"><label><input type="radio" name="theme" value="light">Light</label></div><div class="radio"><label><input type="radio" name="theme" value="dark">Dark</label></div>
+</div>
+
+</fieldset>
+
+
+<div class="form-group">
+	
+
+	<input type="submit" name="save" class="btn btn-primary button" value="Save"> <input type="submit" name="cancel" class="btn btn-default button" value="Cancel" formnovalidate>
+</div>
+
+
+<div><input type="hidden" name="_form_" value="complete"><input type="hidden" name="ref" value="home"></div>
+</form>
