@@ -1,0 +1,27 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+[*.{yml,js,mjs,ts,mts,vue,css,xml}]
+indent_size = 2
+
+[docs/**.{json,sh}]
+indent_size = 2
+
+# Rendered HTML fixtures are compared byte for byte
+[tests/fixtures/**.html]
+insert_final_newline = unset
+trim_trailing_whitespace = unset
+indent_style = unset
+indent_size = unset
+
+# Code blocks may contain tabs
+[*.md]
+indent_style = unset
+trim_trailing_whitespace = false

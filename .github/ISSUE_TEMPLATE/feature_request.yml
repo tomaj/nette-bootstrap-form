@@ -1,0 +1,74 @@
+name: Feature request
+description: Suggest an improvement to nette-bootstrap-form
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the suggestion. nette-bootstrap-form renders Nette forms with Bootstrap markup. The next planned major release is 3.0; breaking ideas can be proposed with that in mind.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What is difficult or missing today?
+      placeholder: I cannot render a form with Bootstrap 5 markup because...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: How should the renderer behave? Show the markup you would expect.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives
+      description: What else did you consider, including changing `$wrappers` on the renderer instance?
+    validations:
+      required: false
+
+  - type: dropdown
+    id: renderer
+    attributes:
+      label: Renderer
+      options:
+        - BootstrapRenderer (horizontal)
+        - BootstrapVerticalRenderer
+        - BootstrapInlineRenderer
+        - All of them
+        - A new renderer
+    validations:
+      required: false
+
+  - type: dropdown
+    id: compatibility
+    attributes:
+      label: Compatibility
+      description: Can this land without a breaking change (different HTML output counts as breaking)?
+      options:
+        - Yes, the output of existing forms does not change
+        - No, it needs a major version
+        - Not sure
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched existing issues and this is not a duplicate
+          required: true

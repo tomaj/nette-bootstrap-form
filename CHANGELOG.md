@@ -7,6 +7,8 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 ### Changed
 - **BREAKING CHANGE**: minimum PHP version raised from 7.1 to 8.3 (`"php": "^8.3"`). The package already needed PHP 8.1+ through nette/forms 3.2. ([#20](https://github.com/tomaj/nette-bootstrap-form/pull/20))
 - `Checkbox` controls use `getContainerPrototype()` instead of the deprecated `getSeparatorPrototype()` alias (same element, no change in output). ([#20](https://github.com/tomaj/nette-bootstrap-form/pull/20))
+- Autoloading uses PSR-4 (`Tomaj\Form\Renderer\` → `src/`) instead of a classmap. Class names are unchanged. ([#21](https://github.com/tomaj/nette-bootstrap-form/issues/21))
+- The Composer dist archive contains only `src/`, `composer.json` and the README, CHANGELOG and UPGRADE files; tests, fixtures and tool configs are no longer installed into `vendor/`. ([#21](https://github.com/tomaj/nette-bootstrap-form/issues/21))
 
 ### Fixed
 - Rendering no longer fails with a `TypeError` when a button's class is stored as an array: set with `addClass()` or as an array, and also when the same form is rendered a second time or part by part (`render($form, 'begin')`, `'body'`, ...), because the first render adds the `btn` classes that way. The existing classes are checked for `btn`; output for forms that rendered before is unchanged. ([#20](https://github.com/tomaj/nette-bootstrap-form/pull/20))
@@ -15,6 +17,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - PHPUnit test suite that renders forms with all three renderers and compares the HTML with the output from before the fix. ([#20](https://github.com/tomaj/nette-bootstrap-form/pull/20))
 - GitHub Actions CI: tests on PHP 8.3–8.6 (plus prefer-lowest, nightly 8.7 allowed to fail), php-cs-fixer (PER-CS), PHPStan level max with strict rules, composer audit. ([#20](https://github.com/tomaj/nette-bootstrap-form/pull/20))
 - Dependabot for Composer and GitHub Actions. ([#20](https://github.com/tomaj/nette-bootstrap-form/pull/20))
+- `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md` (supported versions, private vulnerability reporting), `RELEASING.md`, `UPGRADE-3.0.md`, issue and pull request templates. ([#21](https://github.com/tomaj/nette-bootstrap-form/issues/21))
 
 ## [2.1.1] - 2026-03-26
 

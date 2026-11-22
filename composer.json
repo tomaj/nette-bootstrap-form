@@ -1,8 +1,14 @@
 {
     "name": "tomaj/nette-bootstrap-form",
-    "description": "Nette bootstrap form renderer",
+    "description": "Bootstrap renderers (horizontal, vertical, inline) for Nette Forms.",
     "license": "LGPL-2.0-or-later",
-    "keywords": ["nette", "form", "bootstrap", "renderer"],
+    "type": "library",
+    "keywords": [
+        "nette",
+        "form",
+        "bootstrap",
+        "renderer"
+    ],
     "authors": [
         {
             "name": "Tomas Majer",
@@ -10,6 +16,13 @@
             "homepage": "http://www.tomaj.sk/"
         }
     ],
+    "homepage": "https://tomaj.github.io/nette-bootstrap-form/",
+    "support": {
+        "issues": "https://github.com/tomaj/nette-bootstrap-form/issues",
+        "source": "https://github.com/tomaj/nette-bootstrap-form",
+        "docs": "https://tomaj.github.io/nette-bootstrap-form/",
+        "security": "https://github.com/tomaj/nette-bootstrap-form/security/policy"
+    },
     "require": {
         "php": "^8.3",
         "nette/forms": "^3.2"
@@ -23,15 +36,19 @@
         "phpstan/phpstan-strict-rules": "^2.0",
         "phpunit/phpunit": "^12.5"
     },
+    "minimum-stability": "stable",
     "autoload": {
-        "classmap": [
-            "src/"
-        ]
+        "psr-4": {
+            "Tomaj\\Form\\Renderer\\": "src/"
+        }
     },
     "autoload-dev": {
         "psr-4": {
             "Tomaj\\Form\\Renderer\\Tests\\": "tests/"
         }
+    },
+    "config": {
+        "sort-packages": true
     },
     "scripts": {
         "check": [
@@ -47,8 +64,5 @@
             "phpunit --no-coverage"
         ],
         "test": "@phpunit"
-    },
-    "config": {
-        "sort-packages": true
     }
 }
