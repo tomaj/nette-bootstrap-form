@@ -15,7 +15,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Added
 - PHPUnit test suite that renders forms with all three renderers and compares the HTML with the output from before the fix. ([#20](https://github.com/tomaj/nette-bootstrap-form/pull/20))
-- GitHub Actions CI: tests on PHP 8.4–8.6 (plus prefer-lowest, nightly 8.7 allowed to fail), php-cs-fixer (PER-CS), PHPStan level max with strict rules, composer audit. ([#20](https://github.com/tomaj/nette-bootstrap-form/pull/20))
+- GitHub Actions CI: tests on PHP 8.4–8.6 (plus prefer-lowest, nightly 8.7 allowed to fail), php-cs-fixer (PER-CS), PHPStan level max with strict rules, Rector, composer audit, statement coverage threshold with Coveralls upload. Release workflow (notes from the CHANGELOG, source archives with build provenance attestations), CodeQL and OpenSSF Scorecard. ([#20](https://github.com/tomaj/nette-bootstrap-form/pull/20), [#22](https://github.com/tomaj/nette-bootstrap-form/issues/22))
 - Dependabot for Composer and GitHub Actions. ([#20](https://github.com/tomaj/nette-bootstrap-form/pull/20))
 - Rector (PHP 8.4 set, dead code, code quality, type declarations, early return), PHP-CS-Fixer with `declare_strict_types`, PHPStan `checkMissingOverrideMethodAttribute` and `checkUninitializedProperties`; composer scripts `rector`, `rector-fix`, `coverage`, `infection` and `check` with descriptions. ([#23](https://github.com/tomaj/nette-bootstrap-form/issues/23))
 - `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md` (supported versions, private vulnerability reporting), `RELEASING.md`, `UPGRADE-3.0.md`, issue and pull request templates. ([#21](https://github.com/tomaj/nette-bootstrap-form/issues/21))
