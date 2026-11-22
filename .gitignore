@@ -3,3 +3,4 @@ vendor
 .DS_Store
 composer.lock
 build/
+.phpunit.cache/

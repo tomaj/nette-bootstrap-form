@@ -19,23 +19,34 @@
         "nette/phpstan-rules": "^1.0.8",
         "phpstan/phpstan": "^2.3",
         "phpstan/phpstan-deprecation-rules": "^2.0",
-        "phpstan/phpstan-strict-rules": "^2.0"
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpstan/phpstan-strict-rules": "^2.0",
+        "phpunit/phpunit": "^12.5"
     },
     "autoload": {
         "classmap": [
             "src/"
         ]
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tomaj\\Form\\Renderer\\Tests\\": "tests/"
+        }
+    },
     "scripts": {
         "check": [
             "@phpcs",
             "@phpstan",
-            "@lint"
+            "@test"
         ],
         "cs-fix": "php-cs-fixer fix",
-        "lint": "find src -name '*.php' -print0 | xargs -0 -n1 php -l",
         "phpcs": "php-cs-fixer fix --dry-run --diff --verbose",
-        "phpstan": "phpstan analyse --memory-limit=1G"
+        "phpstan": "phpstan analyse --memory-limit=1G",
+        "phpunit": [
+            "@putenv XDEBUG_MODE=off",
+            "phpunit --no-coverage"
+        ],
+        "test": "@phpunit"
     },
     "config": {
         "sort-packages": true

@@ -1,0 +1,17 @@
+<form action="" method="post" enctype="multipart/form-data" novalidate="novalidate">
+
+
+<div class="form-group">
+	<label for="frm-file">File</label>
+
+	<input type="file" name="file" id="frm-file" data-nette-rules='[{"op":":fileSize","msg":"The size of the uploaded file can be up to 1024 bytes.","arg":1024}]' class="text">
+</div>
+
+<div class="form-group">
+	<label for="frm-files">Files</label>
+
+	<input type="file" name="files[]" multiple id="frm-files" data-nette-rules='[{"op":":fileSize","msg":"The size of the uploaded file can be up to 1024 bytes.","arg":1024},{"op":":maxLength","msg":"Please enter no more than 5 characters.","arg":5}]' class="text">
+</div>
+
+
+</form>
