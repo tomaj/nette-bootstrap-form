@@ -47,9 +47,9 @@ final class RendererTest extends TestCase
     #[DataProvider('rendererAndCaseProvider')]
     public function testRendersExpectedHtml(string $renderer, string $case): void
     {
-        $html = (new $renderer())->render(self::form($case));
+        $html = new $renderer()->render($this->form($case));
 
-        self::assertStringEqualsFile(self::fixture($renderer, $case), $html);
+        self::assertStringEqualsFile($this->fixture($renderer, $case), $html);
     }
 
     /**
@@ -60,10 +60,10 @@ final class RendererTest extends TestCase
     #[DataProvider('rendererAndCaseProvider')]
     public function testRenderingTwiceGivesTheSameHtml(string $renderer, string $case): void
     {
-        $form = self::form($case);
-        $first = (new $renderer())->render($form);
+        $form = $this->form($case);
+        $first = new $renderer()->render($form);
 
-        self::assertSame($first, (new $renderer())->render($form));
+        self::assertSame($first, new $renderer()->render($form));
     }
 
     /**
@@ -72,7 +72,7 @@ final class RendererTest extends TestCase
     #[DataProvider('rendererProvider')]
     public function testRendersFormPartByPart(string $renderer): void
     {
-        $form = self::form('complete');
+        $form = $this->form('complete');
         $instance = new $renderer();
 
         $html = $instance->render($form, 'begin')
@@ -99,7 +99,7 @@ final class RendererTest extends TestCase
         $form->addSubmit('styled', 'Styled')->getControlPrototype()->addClass('btn btn-warning');
         $form->addSubmit('other', 'Other');
 
-        $html = (new $renderer())->render($form);
+        $html = new $renderer()->render($form);
 
         self::assertStringContainsString('class="my-button btn btn-primary button" value="Custom"', $html);
         self::assertStringContainsString('class="btn btn-warning button" value="Styled"', $html);
@@ -112,11 +112,11 @@ final class RendererTest extends TestCase
     #[DataProvider('rendererProvider')]
     public function testNovalidateCanBeTurnedOff(string $renderer): void
     {
-        self::assertStringContainsString('novalidate="novalidate"', (new $renderer())->render(new Form(), 'begin'));
-        self::assertStringNotContainsString('novalidate', (new $renderer(false))->render(new Form(), 'begin'));
+        self::assertStringContainsString('novalidate="novalidate"', new $renderer()->render(new Form(), 'begin'));
+        self::assertStringNotContainsString('novalidate', new $renderer(false)->render(new Form(), 'begin'));
     }
 
-    private static function form(string $case): Form
+    private function form(string $case): Form
     {
         return FormCases::all()[$case]();
     }
@@ -124,7 +124,7 @@ final class RendererTest extends TestCase
     /**
      * @param class-string $renderer
      */
-    private static function fixture(string $renderer, string $case): string
+    private function fixture(string $renderer, string $case): string
     {
         return __DIR__ . '/fixtures/' . self::shortName($renderer) . '/' . $case . '.html';
     }

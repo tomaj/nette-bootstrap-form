@@ -187,7 +187,7 @@ final class FormCases
         $form->addGroup('Address')->setOption('description', 'Where you live');
         $form->addText('street', 'Street');
         $form->addCheckbox('primary', 'Primary address');
-        $form->setCurrentGroup(null);
+        $form->setCurrentGroup();
         $form->addSubmit('send', 'Send');
         return $form;
     }
@@ -297,7 +297,7 @@ final class FormCases
         $form->addCheckboxList('roles', 'Roles', ['admin' => 'Admin', 'user' => 'User']);
         $form->addRadioList('theme', 'Theme', ['light' => 'Light', 'dark' => 'Dark']);
         $form->addHidden('ref', 'home');
-        $form->setCurrentGroup(null);
+        $form->setCurrentGroup();
         $form->addSubmit('save', 'Save');
         $form->addSubmit('cancel', 'Cancel')->setValidationScope([]);
         $form->addError('Please correct the errors.');

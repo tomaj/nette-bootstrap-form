@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tomaj\Form\Renderer;
 
 use Nette\Forms\Controls\Button;
@@ -62,14 +64,9 @@ class BootstrapInlineRenderer extends DefaultFormRenderer
         ],
     ];
 
-    /** @var bool */
-    private $novalidate;
+    public function __construct(private readonly bool $novalidate = true) {}
 
-    public function __construct(bool $novalidate = true)
-    {
-        $this->novalidate = $novalidate;
-    }
-
+    #[\Override]
     public function render(Form $form, ?string $mode = null): string
     {
         $form->getElementPrototype()->addClass('form-inline');
@@ -81,7 +78,7 @@ class BootstrapInlineRenderer extends DefaultFormRenderer
         $usedPrimary = false;
         foreach ($form->getControls() as $control) {
             if ($control instanceof Button) {
-                if (!str_contains(self::classString($control->getControlPrototype()->getClass()), 'btn')) {
+                if (!str_contains($this->classString($control->getControlPrototype()->getClass()), 'btn')) {
                     $control->getControlPrototype()->addClass($usedPrimary ? 'btn btn-default' : 'btn btn-primary');
                     $usedPrimary = true;
                 }
@@ -103,7 +100,7 @@ class BootstrapInlineRenderer extends DefaultFormRenderer
     /**
      * The class attribute is a string, or an array of class => enabled after Html::addClass().
      */
-    private static function classString(mixed $class): string
+    private function classString(mixed $class): string
     {
         if (is_array($class)) {
             $classes = [];
