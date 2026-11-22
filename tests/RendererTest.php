@@ -116,6 +116,84 @@ final class RendererTest extends TestCase
         self::assertStringNotContainsString('novalidate', new $renderer(false)->render(new Form(), 'begin'));
     }
 
+    /**
+     * With $novalidate = false the browser validation stays on, everything else is decorated the same way.
+     *
+     * @param class-string<BootstrapRenderer|BootstrapInlineRenderer|BootstrapVerticalRenderer> $renderer
+     */
+    #[DataProvider('rendererAndCaseProvider')]
+    public function testNovalidateFalseOnlyDropsTheAttribute(string $renderer, string $case): void
+    {
+        $html = new $renderer(false)->render($this->form($case));
+
+        self::assertStringNotContainsString('novalidate="novalidate"', $html);
+        self::assertSame(
+            str_replace(' novalidate="novalidate"', '', (string) file_get_contents($this->fixture($renderer, $case))),
+            $html,
+        );
+    }
+
+    /**
+     * @return iterable<string, array{class-string<BootstrapRenderer|BootstrapInlineRenderer|BootstrapVerticalRenderer>, string}>
+     */
+    public static function formClassProvider(): iterable
+    {
+        yield 'BootstrapRenderer' => [BootstrapRenderer::class, 'class="ajax form-horizontal"'];
+        yield 'BootstrapInlineRenderer' => [BootstrapInlineRenderer::class, 'class="ajax form-inline"'];
+        yield 'BootstrapVerticalRenderer' => [BootstrapVerticalRenderer::class, 'class="ajax"'];
+    }
+
+    /**
+     * The form class is added to the existing classes; the vertical renderer adds none.
+     *
+     * @param class-string<BootstrapRenderer|BootstrapInlineRenderer|BootstrapVerticalRenderer> $renderer
+     */
+    #[DataProvider('formClassProvider')]
+    public function testAddsTheFormClassToExistingClasses(string $renderer, string $expected): void
+    {
+        $form = new Form();
+        $form->getElementPrototype()->addClass('ajax');
+
+        self::assertSame('<form action="" method="post" ' . $expected . ' novalidate="novalidate">', new $renderer()->render($form, 'begin'));
+    }
+
+    /**
+     * Class lists set as an array of strings are searched for "btn" like a class string.
+     *
+     * @param class-string<BootstrapRenderer|BootstrapInlineRenderer|BootstrapVerticalRenderer> $renderer
+     */
+    #[DataProvider('rendererProvider')]
+    public function testButtonWithClassListOfStrings(string $renderer): void
+    {
+        $form = new Form();
+        $form->addSubmit('plain', 'Plain')->setHtmlAttribute('class', ['large', 'wide']);
+        $form->addSubmit('styled', 'Styled')->setHtmlAttribute('class', ['big', 'btn-danger']);
+        $form->addSubmit('named', 'Named')->setHtmlAttribute('class', ['x' => 'btn', 'off' => false, 'empty' => '']);
+        $form->addSubmit('other', 'Other');
+
+        $html = new $renderer()->render($form);
+
+        self::assertStringContainsString('class="large wide btn btn-primary button" value="Plain"', $html);
+        self::assertStringContainsString('class="big btn-danger button" value="Styled"', $html);
+        self::assertStringContainsString('value="Named"', $html);
+        self::assertStringNotContainsString('btn-default button" value="Named"', $html);
+        self::assertStringContainsString('class="btn btn-default button" value="Other"', $html);
+    }
+
+    /**
+     * @param class-string<BootstrapRenderer|BootstrapInlineRenderer|BootstrapVerticalRenderer> $renderer
+     */
+    #[DataProvider('rendererProvider')]
+    public function testWrappersCanBeChangedOnTheInstance(string $renderer): void
+    {
+        $instance = new $renderer();
+        $instance->wrappers['pair']['container'] = 'div class="form-group row"';
+        $form = new Form();
+        $form->addText('name', 'Name');
+
+        self::assertStringContainsString('<div class="form-group row">', $instance->render($form, 'body'));
+    }
+
     private function form(string $case): Form
     {
         return FormCases::all()[$case]();

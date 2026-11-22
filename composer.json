@@ -29,12 +29,13 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.95",
+        "infection/infection": "^0.35",
         "nette/phpstan-rules": "^1.0.8",
         "phpstan/phpstan": "^2.3",
         "phpstan/phpstan-deprecation-rules": "^2.0",
         "phpstan/phpstan-phpunit": "^2.0",
         "phpstan/phpstan-strict-rules": "^2.0",
-        "phpunit/phpunit": "^12.5",
+        "phpunit/phpunit": "^13.2",
         "rector/rector": "^2.8"
     },
     "minimum-stability": "stable",
@@ -49,6 +50,9 @@
         }
     },
     "config": {
+        "allow-plugins": {
+            "infection/extension-installer": true
+        },
         "sort-packages": true
     },
     "scripts": {

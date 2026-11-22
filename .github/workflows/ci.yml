@@ -191,3 +191,26 @@ jobs:
 
     - name: Run security audit
       run: composer audit
+
+  mutation-testing:
+    name: Mutation Testing (Infection)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        persist-credentials: false
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@e8d43d139fbfbe401c32ef3a3a32e14075f20122 # main after 2.40.0 (PHP 8.6 stable)
+      with:
+        php-version: '8.6'
+        extensions: mbstring, xml
+        coverage: xdebug
+
+    - name: Install dependencies
+      run: composer update --prefer-dist --no-progress --no-interaction
+
+    - name: Run Infection
+      run: XDEBUG_MODE=coverage vendor/bin/infection --threads=max --logger-github

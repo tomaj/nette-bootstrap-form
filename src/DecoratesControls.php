@@ -55,7 +55,8 @@ trait DecoratesControls
     }
 
     /**
-     * The class attribute is a string, or an array of class => enabled after Html::addClass().
+     * The class attribute is a string, or an array of class => enabled after Html::addClass(),
+     * or a list of class names. Only used to look for "btn", so empty names do not matter.
      */
     private function classString(mixed $class): string
     {
@@ -63,8 +64,8 @@ trait DecoratesControls
             $classes = [];
             foreach ($class as $name => $value) {
                 if ($value === true) {
-                    $classes[] = (string) $name;
-                } elseif (is_string($value) && $value !== '') {
+                    $classes[] = $name;
+                } elseif (is_string($value)) {
                     $classes[] = $value;
                 }
             }
