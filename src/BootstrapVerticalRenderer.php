@@ -80,16 +80,17 @@ class BootstrapVerticalRenderer extends DefaultFormRenderer
         foreach ($form->getControls() as $control) {
             if ($control instanceof Button) {
                 if (strpos($control->getControlPrototype()->getClass() ?? '', 'btn') === false) {
-                    $control->getControlPrototype()->addClass(empty($usedPrimary) ? 'btn btn-primary' : 'btn btn-default');
+                    $control->getControlPrototype()->addClass($usedPrimary ? 'btn btn-default' : 'btn btn-primary');
                     $usedPrimary = true;
                 }
-            } elseif ($control instanceof TextBase ||
-                $control instanceof SelectBox ||
-                $control instanceof MultiSelectBox) {
+            } elseif ($control instanceof TextBase
+                || $control instanceof SelectBox
+                || $control instanceof MultiSelectBox) {
                 $control->getControlPrototype()->addClass('form-control');
-            } elseif ($control instanceof Checkbox ||
-                $control instanceof CheckboxList ||
-                $control instanceof RadioList) {
+            } elseif ($control instanceof Checkbox) {
+                $control->getContainerPrototype()->setName('div')->addClass($control->getControlPrototype()->type);
+            } elseif ($control instanceof CheckboxList
+                || $control instanceof RadioList) {
                 $control->getSeparatorPrototype()->setName('div')->addClass($control->getControlPrototype()->type);
             }
         }

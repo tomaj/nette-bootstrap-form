@@ -1,0 +1,115 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Lint PHP ${{ matrix.php }} ${{ matrix.dependency-version }}
+    runs-on: ubuntu-latest
+    # PHP 8.7 is a nightly build: it runs to show problems early but does not fail the workflow
+    continue-on-error: ${{ matrix.php == '8.7' }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['8.3', '8.4', '8.5', '8.6', '8.7']
+        dependency-version: ['']
+        include:
+          - php: '8.3'
+            dependency-version: '--prefer-lowest'
+
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@e8d43d139fbfbe401c32ef3a3a32e14075f20122 # main after 2.40.0 (PHP 8.6 stable)
+      with:
+        php-version: ${{ matrix.php }}
+        extensions: mbstring, xml
+        coverage: none
+
+    - name: Validate composer.json
+      run: composer validate --strict
+
+    - name: Cache Composer packages
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ matrix.php }}-${{ matrix.dependency-version }}-${{ hashFiles('composer.json') }}
+        restore-keys: |
+          ${{ runner.os }}-php-${{ matrix.php }}-${{ matrix.dependency-version }}-
+
+    - name: Install dependencies
+      # dependencies cap their PHP version, so the nightly ignores the upper bound
+      run: composer update ${{ matrix.dependency-version }} ${{ matrix.php == '8.7' && '--ignore-platform-req=php+' || '' }} --prefer-dist --no-progress --no-interaction
+
+    - name: Lint
+      # the package has no test suite; check that every file parses on this PHP version
+      run: find src -name '*.php' -print0 | xargs -0 -n1 php -l
+
+  code-style:
+    name: Code Style (PER-CS + PHP 8.3)
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@e8d43d139fbfbe401c32ef3a3a32e14075f20122 # main after 2.40.0 (PHP 8.6 stable)
+      with:
+        php-version: '8.3'
+        extensions: mbstring, xml
+        coverage: none
+
+    - name: Install dependencies
+      run: composer update --prefer-dist --no-progress --no-interaction
+
+    - name: Check code style
+      run: vendor/bin/php-cs-fixer fix --dry-run --diff --verbose
+
+  static-analysis:
+    name: Static Analysis (PHPStan level 8)
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@e8d43d139fbfbe401c32ef3a3a32e14075f20122 # main after 2.40.0 (PHP 8.6 stable)
+      with:
+        php-version: '8.3'
+        extensions: mbstring, xml
+        coverage: none
+
+    - name: Install dependencies
+      run: composer update --prefer-dist --no-progress --no-interaction
+
+    - name: Run PHPStan
+      run: vendor/bin/phpstan analyse --memory-limit=1G
+
+  security:
+    name: Security Audit
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@e8d43d139fbfbe401c32ef3a3a32e14075f20122 # main after 2.40.0 (PHP 8.6 stable)
+      with:
+        php-version: '8.3'
+        extensions: mbstring, xml
+        coverage: none
+
+    - name: Install dependencies
+      run: composer update --prefer-dist --no-progress --no-interaction
+
+    - name: Run security audit
+      run: composer audit

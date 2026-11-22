@@ -1,7 +1,11 @@
 Nette bootstrap form renderer
 =============================
 
+[![CI](https://github.com/tomaj/nette-bootstrap-form/actions/workflows/ci.yml/badge.svg)](https://github.com/tomaj/nette-bootstrap-form/actions/workflows/ci.yml)
+
 Simple nette bootstrap form renderers.
+
+Requires PHP 8.3 or newer and nette/forms 3.2+.
 
 Installation
 ------------

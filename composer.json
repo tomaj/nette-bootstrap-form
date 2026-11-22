@@ -11,12 +11,33 @@
         }
     ],
     "require": {
-        "php": ">= 7.1.0",
+        "php": "^8.3",
         "nette/forms": "^3.2"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.95",
+        "nette/phpstan-rules": "^1.0.8",
+        "phpstan/phpstan": "^2.3",
+        "phpstan/phpstan-deprecation-rules": "^2.0",
+        "phpstan/phpstan-strict-rules": "^2.0"
     },
     "autoload": {
         "classmap": [
             "src/"
         ]
+    },
+    "scripts": {
+        "check": [
+            "@phpcs",
+            "@phpstan",
+            "@lint"
+        ],
+        "cs-fix": "php-cs-fixer fix",
+        "lint": "find src -name '*.php' -print0 | xargs -0 -n1 php -l",
+        "phpcs": "php-cs-fixer fix --dry-run --diff --verbose",
+        "phpstan": "phpstan analyse --memory-limit=1G"
+    },
+    "config": {
+        "sort-packages": true
     }
 }

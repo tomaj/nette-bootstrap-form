@@ -1,0 +1,37 @@
+version: 2
+updates:
+  - package-ecosystem: composer
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - php
+    commit-message:
+      prefix: chore
+      include: scope
+    # A library: widen the range so it also allows the new major
+    # instead of replacing it and silently dropping the old one.
+    versioning-strategy: widen
+    groups:
+      composer-runtime:
+        dependency-type: production
+      composer-dev:
+        dependency-type: development
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - github_actions
+    commit-message:
+      prefix: ci
+      include: scope
+    groups:
+      github-actions:
+        patterns:
+          - "*"
