@@ -30,6 +30,7 @@ After:
 
 Before:
 
+<!-- snippet: skip -->
 ```php
 use Tomaj\Form\Renderer\BootstrapRenderer;
 
