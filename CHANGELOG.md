@@ -6,6 +6,8 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Changed
 - **BREAKING CHANGE**: minimum PHP version raised from 7.1 to 8.4 (`"php": "^8.4"`). The package already needed PHP 8.1+ through nette/forms 3.2. Stay on 2.x for older PHP versions. ([#20](https://github.com/tomaj/nette-bootstrap-form/pull/20), [#24](https://github.com/tomaj/nette-bootstrap-form/issues/24))
+- **BREAKING CHANGE**: `BootstrapRenderer`, `BootstrapVerticalRenderer` and `BootstrapInlineRenderer` are `final`. Instead of subclassing a renderer to change `$wrappers`, change them on the instance (`$renderer->wrappers['pair']['container'] = ...`) or wrap the renderer in your own `Nette\Forms\FormRenderer`; see [UPGRADE-3.0.md](UPGRADE-3.0.md). The rendered HTML is unchanged. ([#25](https://github.com/tomaj/nette-bootstrap-form/issues/25))
+- All files declare `strict_types`; `render()` has `#[\Override]`, `$novalidate` is a promoted `readonly` property, and the control decoration shared by the three renderers lives in one internal trait. No change in output. ([#25](https://github.com/tomaj/nette-bootstrap-form/issues/25))
 - `Checkbox` controls use `getContainerPrototype()` instead of the deprecated `getSeparatorPrototype()` alias (same element, no change in output). ([#20](https://github.com/tomaj/nette-bootstrap-form/pull/20))
 - Autoloading uses PSR-4 (`Tomaj\Form\Renderer\` → `src/`) instead of a classmap. Class names are unchanged. ([#21](https://github.com/tomaj/nette-bootstrap-form/issues/21))
 - The Composer dist archive contains only `src/`, `composer.json` and the README, CHANGELOG and UPGRADE files; tests, fixtures and tool configs are no longer installed into `vendor/`. ([#21](https://github.com/tomaj/nette-bootstrap-form/issues/21))

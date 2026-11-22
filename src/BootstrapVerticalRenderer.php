@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Tomaj\Form\Renderer;
 
-use Nette\Forms\Controls\Button;
-use Nette\Forms\Controls\Checkbox;
-use Nette\Forms\Controls\CheckboxList;
-use Nette\Forms\Controls\MultiSelectBox;
-use Nette\Forms\Controls\RadioList;
-use Nette\Forms\Controls\SelectBox;
-use Nette\Forms\Controls\TextBase;
 use Nette\Forms\Form;
 use Nette\Forms\Rendering\DefaultFormRenderer;
 
-class BootstrapVerticalRenderer extends DefaultFormRenderer
+/**
+ * Vertical (default) Bootstrap 3 form: each label above its control.
+ *
+ * Configure the markup through $wrappers on the instance; the class is final.
+ */
+final class BootstrapVerticalRenderer extends DefaultFormRenderer
 {
+    use DecoratesControls;
+
     public array $wrappers = [
         'form' => [
             'container' => null,
@@ -69,49 +69,8 @@ class BootstrapVerticalRenderer extends DefaultFormRenderer
     #[\Override]
     public function render(Form $form, ?string $mode = null): string
     {
-        if ($this->novalidate) {
-            $form->getElementPrototype()->setNovalidate('novalidate');
-        }
-
-        $usedPrimary = false;
-        foreach ($form->getControls() as $control) {
-            if ($control instanceof Button) {
-                if (!str_contains($this->classString($control->getControlPrototype()->getClass()), 'btn')) {
-                    $control->getControlPrototype()->addClass($usedPrimary ? 'btn btn-default' : 'btn btn-primary');
-                    $usedPrimary = true;
-                }
-            } elseif ($control instanceof TextBase
-                || $control instanceof SelectBox
-                || $control instanceof MultiSelectBox) {
-                $control->getControlPrototype()->addClass('form-control');
-            } elseif ($control instanceof Checkbox) {
-                $control->getContainerPrototype()->setName('div')->addClass($control->getControlPrototype()->type);
-            } elseif ($control instanceof CheckboxList
-                || $control instanceof RadioList) {
-                $control->getSeparatorPrototype()->setName('div')->addClass($control->getControlPrototype()->type);
-            }
-        }
+        $this->decorateForm($form, null, $this->novalidate);
 
         return parent::render($form, $mode);
-    }
-
-    /**
-     * The class attribute is a string, or an array of class => enabled after Html::addClass().
-     */
-    private function classString(mixed $class): string
-    {
-        if (is_array($class)) {
-            $classes = [];
-            foreach ($class as $name => $value) {
-                if ($value === true) {
-                    $classes[] = (string) $name;
-                } elseif (is_string($value) && $value !== '') {
-                    $classes[] = $value;
-                }
-            }
-            return implode(' ', $classes);
-        }
-
-        return is_string($class) ? $class : '';
     }
 }
