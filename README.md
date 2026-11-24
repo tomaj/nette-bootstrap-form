@@ -1,10 +1,17 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/public/logo-dark.svg">
+    <img src="docs/public/logo.svg" width="96" height="96" alt="Nette Bootstrap Form logo">
+  </picture>
+</p>
+
 # Nette Bootstrap Form
 
 **Bootstrap renderers (horizontal, vertical, inline) for Nette Forms**
 
 **Documentation: https://tomaj.github.io/nette-bootstrap-form/**
 
-[Getting started](https://tomaj.github.io/nette-bootstrap-form/guide/getting-started) · [Renderers](https://tomaj.github.io/nette-bootstrap-form/guide/renderers) · [API reference](https://tomaj.github.io/nette-bootstrap-form/api/reference) · [Changelog](https://tomaj.github.io/nette-bootstrap-form/changelog)
+[Getting started](https://tomaj.github.io/nette-bootstrap-form/guide/getting-started) · [Renderers](https://tomaj.github.io/nette-bootstrap-form/guide/renderers) · [Examples](https://tomaj.github.io/nette-bootstrap-form/examples/) · [API reference](https://tomaj.github.io/nette-bootstrap-form/api/reference) · [Changelog](https://tomaj.github.io/nette-bootstrap-form/changelog)
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/tomaj/nette-bootstrap-form.svg)](https://packagist.org/packages/tomaj/nette-bootstrap-form)
 [![CI](https://github.com/tomaj/nette-bootstrap-form/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/tomaj/nette-bootstrap-form/actions/workflows/ci.yml?query=branch%3Amaster)
@@ -48,7 +55,7 @@ $form->setRenderer(new BootstrapRenderer());
 echo $form;
 ```
 
-Use `BootstrapVerticalRenderer` or `BootstrapInlineRenderer` the same way. All three take an optional `$novalidate` argument (default `true`); pass `false` to keep the browser's HTML5 validation. Read the [documentation](https://tomaj.github.io/nette-bootstrap-form/) for the rendered markup, button classes and customizing the wrappers.
+Use `BootstrapVerticalRenderer` or `BootstrapInlineRenderer` the same way. All three take an optional `$novalidate` argument (default `true`); pass `false` to keep the browser's HTML5 validation. Read the [documentation](https://tomaj.github.io/nette-bootstrap-form/) for the rendered markup, every control type, errors and customizing the wrappers, and the [examples](https://tomaj.github.io/nette-bootstrap-form/examples/) for runnable forms with their HTML and a preview (the code is in [`examples/`](examples/), tested in CI).
 
 ## Upgrading
 

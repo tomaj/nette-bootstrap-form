@@ -9,6 +9,7 @@
 /RELEASING.md           export-ignore
 /SECURITY.md            export-ignore
 /docs                   export-ignore
+/examples               export-ignore
 /infection.json5        export-ignore
 /phpstan.neon           export-ignore
 /phpunit.xml            export-ignore

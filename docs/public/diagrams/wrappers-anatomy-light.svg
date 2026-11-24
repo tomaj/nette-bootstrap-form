@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 340" width="760" height="340" role="img" aria-label="One label and control pair of BootstrapRenderer. The outer div.form-group is wrappers pair container, with has-error from pair .error. Inside, div.col-sm-3.control-label is label container around the label, and div.col-sm-9 is control container around the input with form-control, the description span.help-block from control description and the error span.help-block from control errorcontainer.">
+  <rect x="1" y="1" width="758" height="338" rx="14" fill="#faf8ff" stroke="#d9cff0" stroke-width="1.5"/>
+  <rect x="24" y="44" width="712" height="226" rx="10" fill="#ffffff" stroke="#6d3fc0" stroke-width="2"/>
+  <text x="36" y="36" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#6b6283">div.form-group.required.has-error</text>
+  <text x="724" y="36" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#6d3fc0">pair.container · pair..required · pair..error</text>
+  <rect x="44" y="84" width="190" height="80" rx="8" fill="#efe8fb" stroke="#6d3fc0" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="48" y="76" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#6b6283">div.col-sm-3.control-label</text>
+  <text x="218" y="130" text-anchor="end" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#2b2340">Password</text>
+  <rect x="254" y="84" width="462" height="166" rx="8" fill="#efe8fb" stroke="#6d3fc0" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="258" y="76" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#6b6283">div.col-sm-9</text>
+  <rect x="272" y="104" width="426" height="38" rx="5" fill="#ffffff" stroke="#c9302c" stroke-width="2"/>
+  <text x="286" y="128" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" fill="#2b2340">•••••</text>
+  <text x="560" y="128" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#6b6283">input.form-control</text>
+  <text x="272" y="170" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#6b6283">At least 8 characters.</text>
+  <text x="490" y="170" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#6b6283">span.help-block</text>
+  <text x="272" y="200" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#c9302c">The password must have at least 8 characters.</text>
+  <text x="272" y="232" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#6b6283">span.help-block</text>
+  <text x="44" y="298" text-anchor="start" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#6d3fc0">label.container</text>
+  <path d="M100 286 V168" stroke="#6d3fc0" stroke-width="1.5" marker-end="url(#arrow-ffffff)"/>
+  <text x="254" y="298" text-anchor="start" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#6d3fc0">control.container</text>
+  <text x="254" y="318" text-anchor="start" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#6d3fc0">control.description → help text,  control.errorcontainer → error</text>
+  <defs><marker id="arrow-ffffff" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#6d3fc0"/></marker></defs>
+</svg>

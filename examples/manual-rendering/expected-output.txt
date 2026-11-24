@@ -1,0 +1,41 @@
+<div class="panel panel-default">
+<div class="panel-heading"><h3 class="panel-title">Sign in</h3></div>
+<div class="panel-body">
+<form action="/sign/in" method="post" id="frm-login" class="ajax" novalidate="novalidate">
+
+<div class="alert alert-danger">
+	<p>The e-mail or the password is wrong.</p>
+</div>
+
+
+
+<div class="form-group required">
+	<label for="frm-login-email" class="required">E-mail</label>
+
+	<input type="email" name="email" maxlength="255" class="form-control" id="frm-login-email" required data-nette-rules='[{"op":":filled","msg":"Please enter your e-mail."},{"op":":email","msg":"Please enter a valid email address."}]'>
+</div>
+
+<div class="form-group required">
+	<label for="frm-login-password" class="required">Password</label>
+
+	<input type="password" name="password" class="form-control text" id="frm-login-password" required data-nette-rules='[{"op":":filled","msg":"Please enter your password."}]'>
+</div>
+
+<div class="form-group">
+	
+
+	<div class="checkbox"><label for="frm-login-remember"><input type="checkbox" name="remember" id="frm-login-remember">Keep me signed in</label></div>
+</div>
+
+<div class="form-group">
+	
+
+	<input type="submit" name="login" class="btn btn-primary button" value="Sign in">
+</div>
+
+
+<div><input type="hidden" name="_form_" value="login"></div>
+</form>
+</div>
+<div class="panel-footer"><a href="/sign/forgot">Forgot your password?</a></div>
+</div>

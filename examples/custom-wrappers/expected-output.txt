@@ -1,0 +1,25 @@
+<form action="/newsletter" method="post" id="frm-newsletter" class="form-horizontal">
+
+<div>
+<div class="form-group required has-error">
+	<div class="col-md-4 control-label"><label for="frm-newsletter-email" class="required">E-mail *</label></div>
+
+	<div class="col-md-8"><input type="email" name="email" maxlength="255" class="form-control" id="frm-newsletter-email" required data-nette-rules='[{"op":":filled","msg":"Please enter your e-mail."},{"op":":email","msg":"Please enter a valid email address."}]'>
+	<div class="help-block"><div class="text-danger">This e-mail is already subscribed.</div></div></div>
+</div>
+
+<div class="form-group">
+	<div class="col-md-4 control-label"><label for="frm-newsletter-frequency">How often</label></div>
+
+	<div class="col-md-8"><select name="frequency" class="form-control" id="frm-newsletter-frequency"><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select> <p class="help-block small">You can change it in every e-mail.</p></div>
+</div>
+
+<div class="form-group">
+	<div class="col-md-4 control-label"></div>
+
+	<div class="col-md-8"><input type="submit" name="subscribe" class="btn btn-primary button" value="Subscribe"></div>
+</div>
+</div>
+
+<div><input type="hidden" name="_form_" value="newsletter"></div>
+</form>

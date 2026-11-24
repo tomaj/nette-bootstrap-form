@@ -1,0 +1,93 @@
+<form action="/checkout" method="post" id="frm-checkout" class="form-horizontal" novalidate="novalidate">
+
+<fieldset>
+<legend>Contact</legend>
+
+<div>
+<div class="form-group required">
+	<div class="col-sm-3 control-label"><label for="frm-checkout-email" class="required">E-mail</label></div>
+
+	<div class="col-sm-9"><input type="email" name="email" maxlength="255" class="form-control" id="frm-checkout-email" required data-nette-rules='[{"op":":filled","msg":"Please enter your e-mail."},{"op":":email","msg":"Please enter a valid email address."}]'> <span class="help-block">We send the order confirmation here.</span></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-checkout-phone">Phone</label></div>
+
+	<div class="col-sm-9"><input type="tel" name="phone" class="form-control" id="frm-checkout-phone"> <span class="help-block">Only for the courier.</span></div>
+</div>
+</div>
+</fieldset>
+
+<fieldset>
+<legend>Shipping address</legend>
+<p>We deliver to Slovakia and Czechia.</p>
+
+<div>
+<div class="form-group required">
+	<div class="col-sm-3 control-label"><label for="frm-checkout-street" class="required">Street</label></div>
+
+	<div class="col-sm-9"><input type="text" name="street" class="form-control text" id="frm-checkout-street" required data-nette-rules='[{"op":":filled","msg":"Please enter the street."}]'></div>
+</div>
+
+<div class="form-group required">
+	<div class="col-sm-3 control-label"><label for="frm-checkout-city" class="required">City</label></div>
+
+	<div class="col-sm-9"><input type="text" name="city" class="form-control text" id="frm-checkout-city" required data-nette-rules='[{"op":":filled","msg":"Please enter the city."}]'></div>
+</div>
+
+<div class="form-group required">
+	<div class="col-sm-3 control-label"><label for="frm-checkout-zip" class="required">ZIP code</label></div>
+
+	<div class="col-sm-9"><input type="text" name="zip" class="form-control text" id="frm-checkout-zip" required data-nette-rules='[{"op":":filled","msg":"Please enter the ZIP code."}]'></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-checkout-country">Country</label></div>
+
+	<div class="col-sm-9"><select name="country" class="form-control" id="frm-checkout-country"><option value="sk" selected>Slovakia</option><option value="cz">Czechia</option></select></div>
+</div>
+</div>
+</fieldset>
+
+<fieldset>
+<legend>Delivery and payment</legend>
+
+<div>
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label>Delivery</label></div>
+
+	<div class="col-sm-9"><div class="radio"><label><input type="radio" name="delivery" checked value="courier">Courier (2 days)</label></div><div class="radio"><label><input type="radio" name="delivery" value="pickup">Pickup point (3 days)</label></div></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label>Payment</label></div>
+
+	<div class="col-sm-9"><div class="radio"><label><input type="radio" name="payment" checked value="card">Card</label></div><div class="radio"><label><input type="radio" name="payment" value="transfer">Bank transfer</label></div><div class="radio"><label><input type="radio" name="payment" value="cod">Cash on delivery</label></div></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-checkout-note">Note for the courier</label></div>
+
+	<div class="col-sm-9"><textarea name="note" rows="2" class="form-control" id="frm-checkout-note"></textarea></div>
+</div>
+</div>
+</fieldset>
+
+<fieldset>
+<div>
+<div class="form-group required">
+	<div class="col-sm-3 control-label"></div>
+
+	<div class="col-sm-9"><div class="checkbox"><label for="frm-checkout-terms"><input type="checkbox" name="terms" id="frm-checkout-terms" required data-nette-rules='[{"op":":filled","msg":"You have to agree with the terms."}]'>I agree with the terms and conditions</label></div></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"></div>
+
+	<div class="col-sm-9"><input type="submit" name="order" class="btn btn-primary button" value="Place order"> <input type="submit" name="back" class="btn btn-default button" value="Back to cart" formnovalidate></div>
+</div>
+</div>
+</fieldset>
+
+<div><input type="hidden" name="_form_" value="checkout"></div>
+</form>

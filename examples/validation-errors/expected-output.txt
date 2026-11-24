@@ -1,0 +1,51 @@
+<form action="/register" method="post" id="frm-register" class="form-horizontal" novalidate="novalidate">
+
+<div class="alert alert-danger">
+	<p>Please correct the highlighted fields.</p>
+</div>
+
+
+<div>
+<div class="form-group required">
+	<div class="col-sm-3 control-label"><label for="frm-register-name" class="required">Name</label></div>
+
+	<div class="col-sm-9"><input type="text" name="name" class="form-control text" id="frm-register-name" required data-nette-rules='[{"op":":filled","msg":"Please enter your name."}]' value="Jane"></div>
+</div>
+
+<div class="form-group required has-error">
+	<div class="col-sm-3 control-label"><label for="frm-register-email" class="required">E-mail</label></div>
+
+	<div class="col-sm-9"><input type="email" name="email" maxlength="255" class="form-control" id="frm-register-email" required data-nette-rules='[{"op":":filled","msg":"Please enter your e-mail."},{"op":":email","msg":"Please enter a valid email address."}]' value="jane.example.com">
+	<span class="help-block">Please enter a valid email address.</span></div>
+</div>
+
+<div class="form-group required has-error">
+	<div class="col-sm-3 control-label"><label for="frm-register-age" class="required">Age</label></div>
+
+	<div class="col-sm-9"><input type="number" name="age" min="18" class="form-control" id="frm-register-age" required data-nette-rules='[{"op":":filled","msg":"Please enter your age."},{"op":":integer","msg":"Please enter a valid integer."},{"op":":min","msg":"You must be at least 18 years old.","arg":18}]' value="15">
+	<span class="help-block">You must be at least 18 years old.</span></div>
+</div>
+
+<div class="form-group required has-error">
+	<div class="col-sm-3 control-label"><label for="frm-register-password" class="required">Password</label></div>
+
+	<div class="col-sm-9"><input type="password" name="password" class="form-control text" id="frm-register-password" required data-nette-rules='[{"op":":filled","msg":"Please choose a password."},{"op":":minLength","msg":"The password must have at least 8 characters.","arg":8}]'> <span class="help-block">At least 8 characters.</span>
+	<span class="help-block">The password must have at least 8 characters.</span></div>
+</div>
+
+<div class="form-group required has-error">
+	<div class="col-sm-3 control-label"></div>
+
+	<div class="col-sm-9"><div class="checkbox"><label for="frm-register-terms"><input type="checkbox" name="terms" id="frm-register-terms" required data-nette-rules='[{"op":":filled","msg":"You have to agree with the terms."}]'>I agree with the terms</label></div>
+	<span class="help-block">You have to agree with the terms.</span></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"></div>
+
+	<div class="col-sm-9"><input type="submit" name="send" class="btn btn-primary button" value="Create account"></div>
+</div>
+</div>
+
+<div><input type="hidden" name="_form_" value="register"></div>
+</form>

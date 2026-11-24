@@ -1,0 +1,30 @@
+<form action="/orders" method="get" id="frm-filter" class="form-inline" novalidate="novalidate">
+
+
+<div class="form-group">
+	<label for="frm-filter-q">Search</label>
+
+	<input type="text" name="q" placeholder="Order number or customer" class="form-control text" id="frm-filter-q">
+</div>
+
+<div class="form-group">
+	<label for="frm-filter-status">Status</label>
+
+	<select name="status" class="form-control" id="frm-filter-status"><option value="">Any status</option><option value="new">New</option><option value="paid">Paid</option><option value="shipped">Shipped</option><option value="cancelled">Cancelled</option></select>
+</div>
+
+<div class="form-group">
+	<label for="frm-filter-from">From</label>
+
+	<input type="date" name="from" id="frm-filter-from">
+</div>
+
+<div class="form-group">
+	
+
+	<input type="submit" name="filter" class="btn btn-primary button" value="Filter"> <input type="submit" name="clear" class="btn btn-default button" value="Clear" formnovalidate>
+</div>
+
+
+<div><input type="hidden" name="_form_" value="filter"></div>
+</form>

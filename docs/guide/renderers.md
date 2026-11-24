@@ -1,19 +1,34 @@
 ---
 title: Renderers
-description: The horizontal, vertical and inline Bootstrap renderers, what they change on each control, button classes, novalidate and custom wrappers.
+description: 'The horizontal, vertical and inline Bootstrap renderers side by side, with the HTML each one renders and a preview with Bootstrap 3 CSS.'
 ---
 
 # Renderers
 
-All three renderers extend `Nette\Forms\Rendering\DefaultFormRenderer`. They differ only in the wrappers around labels and controls (`$wrappers`) and in the class they add to the `<form>` element. Before rendering, each of them adds the same Bootstrap classes to the controls (see [What the renderers change](#what-the-renderers-change)).
+The package has three renderers. All of them extend `Nette\Forms\Rendering\DefaultFormRenderer`, Nette's own renderer, and differ only in the wrappers around labels and controls (`$wrappers`) and in the class they add to the `<form>` element:
 
-| Renderer | Form class | Label | Control |
-|---|---|---|---|
-| `BootstrapRenderer` | `form-horizontal` | `<div class="col-sm-3 control-label">` | `<div class="col-sm-9">` |
-| `BootstrapVerticalRenderer` | none | bare `<label>` | bare control |
-| `BootstrapInlineRenderer` | `form-inline` | bare `<label>` | bare control |
+| Renderer | Form class | Label | Control | Use it for |
+|---|---|---|---|---|
+| `BootstrapRenderer` | `form-horizontal` | `<div class="col-sm-3 control-label">` | `<div class="col-sm-9">` | admin and settings forms with many fields |
+| `BootstrapVerticalRenderer` | none | bare `<label>` | bare control | narrow columns, sign-in, mobile-first pages |
+| `BootstrapInlineRenderer` | `form-inline` | bare `<label>` | bare control | search boxes, filters above a list |
 
-Every pair of label and control is wrapped in `<div class="form-group">` (with `required` for required controls and `has-error` when the control has an error).
+Every pair of label and control is wrapped in `<div class="form-group">`, with `required` for required controls and `has-error` when the control has an error.
+
+## How rendering works
+
+<img class="diagram only-light" src="/diagrams/render-flow-light.svg" alt="Rendering flow: your Nette Form goes to the renderer's render() method, which first adds the Bootstrap classes to the form and its controls, then lets DefaultFormRenderer wrap every pair using the renderer's $wrappers and returns the HTML." width="760" height="230">
+<img class="diagram only-dark" src="/diagrams/render-flow-dark.svg" alt="Rendering flow: your Nette Form goes to the renderer's render() method, which first adds the Bootstrap classes to the form and its controls, then lets DefaultFormRenderer wrap every pair using the renderer's $wrappers and returns the HTML." width="760" height="230">
+
+`render()` runs whenever the form is rendered: `echo $form`, `$form->render()`, `(string) $form` or `{control myForm}` in Latte. It first decorates the form (the classes listed in [Controls](/guide/controls)), then calls `DefaultFormRenderer::render()`. The classes are added to the control prototypes themselves, so rendering the same form again, or part by part, gives the same HTML.
+
+## Side by side
+
+The same contact form, rendered by each renderer with Bootstrap 3.4.1 CSS ([`examples/layouts`](/examples/layouts)):
+
+<FormPreview name="layouts" />
+
+The horizontal and inline layouts apply from Bootstrap's `sm` breakpoint (768 px). On a narrower screen every renderer shows the label above the control.
 
 ## Horizontal: `BootstrapRenderer`
 
@@ -116,143 +131,14 @@ echo $form;
 
 ## What the renderers change
 
-Before the form is rendered, every renderer changes the form and its controls:
-
-| Element | Change |
-|---|---|
-| `<form>` | `form-horizontal` (horizontal) or `form-inline` (inline) is added to the existing classes, so classes such as `ajax` stay. `novalidate` is set unless the renderer was created with `false`. |
-| Text inputs, passwords, text areas, selects, multi-selects | `form-control` is added. |
-| Buttons (submit, button, image) | The first button without a `btn` class gets `btn btn-primary`, the others `btn btn-default`. A button that already has a class containing `btn` is left alone and does not use up the primary style. |
-| Checkbox | The label is wrapped in `<div class="checkbox">`. |
-| Checkbox list, radio list | Each item is wrapped in `<div class="checkbox">` or `<div class="radio">`. |
-| Errors | Form errors are rendered in `<div class="alert alert-danger">`, one `<p>` per error; control errors in `<span class="help-block">` under the control. |
-| Groups | A group is a `<fieldset>` with a `<legend>`; its description is a `<p>`. |
-| Descriptions | `setOption('description', ...)` is rendered in `<span class="help-block">`. |
+The decoration is the same for all three renderers; see [Controls](/guide/controls) for every control type, [Validation and errors](/guide/errors) for errors and descriptions, and [Customizing](/guide/customizing) to change the wrappers, the grid or `novalidate`.
 
 Labels, values, descriptions and errors are escaped by nette/forms exactly as with the default renderer.
 
-The classes are added to the controls themselves, so rendering the same form again (or part by part) gives the same HTML; existing classes are kept.
+## Choosing a renderer
 
-## Buttons
+- Use **`BootstrapRenderer`** when the page is wide enough for a label column: profile and settings forms, admin CRUD forms. The grid is `col-sm-3` + `col-sm-9`; change it with [`$wrappers`](/guide/customizing#a-different-grid).
+- Use **`BootstrapVerticalRenderer`** in narrow columns, modals and panels, and when the labels are long.
+- Use **`BootstrapInlineRenderer`** only for a few short controls: a search box, a filter above a table ([`examples/inline-filter`](/examples/inline-filter)). Bootstrap 3 gives inline inputs `width: auto`, so they shrink to their content.
 
-```php
-use Nette\Forms\Form;
-use Tomaj\Form\Renderer\BootstrapVerticalRenderer;
-
-$form = new Form();
-$form->addSubmit('save', 'Save');
-$form->addSubmit('delete', 'Delete')->setHtmlAttribute('class', 'btn btn-danger');
-$form->addSubmit('cancel', 'Cancel');
-
-$renderer = new BootstrapVerticalRenderer();
-echo $renderer->render($form, 'body');
-```
-
-<!-- snippet: output -->
-```html
-<div class="form-group">
-	<input type="submit" name="save" class="btn btn-primary button" value="Save"> <input type="submit" name="delete" class="btn btn-danger button" value="Delete"> <input type="submit" name="cancel" class="btn btn-default button" value="Cancel">
-</div>
-```
-
-`Save` is the first button without a `btn` class, so it is the primary button. `Delete` keeps its own classes. `Cancel` gets the default style. A class set with `addClass()` or as an array (`setHtmlAttribute('class', ['btn', 'btn-danger'])`) is checked the same way.
-
-## Errors and descriptions
-
-```php
-use Nette\Forms\Form;
-use Tomaj\Form\Renderer\BootstrapVerticalRenderer;
-
-$form = new Form();
-$form->addText('login', 'Login')
-    ->setOption('description', 'Letters and numbers only')
-    ->addError('This login is taken.');
-$form->addError('Please correct the errors.');
-
-$renderer = new BootstrapVerticalRenderer();
-echo $renderer->render($form, 'errors');
-echo $renderer->render($form, 'body');
-```
-
-<!-- snippet: output -->
-```html
-<div class="alert alert-danger">
-	<p>Please correct the errors.</p>
-	<p>This login is taken.</p>
-</div>
-<div class="form-group has-error">
-	<label for="frm-login">Login</label>
-	<input type="text" name="login" class="form-control text" id="frm-login"> <span class="help-block">Letters and numbers only</span>
-	<span class="help-block">This login is taken.</span>
-</div>
-```
-
-## HTML5 validation (`novalidate`)
-
-By default the renderers add `novalidate` to the form, so the browser does not run its own validation and Nette's validation (`netteForms.js` and the server side) shows the errors in Bootstrap markup. Pass `false` to keep the browser validation:
-
-```php
-use Nette\Forms\Form;
-use Tomaj\Form\Renderer\BootstrapRenderer;
-
-$form = new Form();
-$renderer = new BootstrapRenderer(novalidate: false);
-echo $renderer->render($form, 'begin');
-```
-
-<!-- snippet: output -->
-```html
-<form action="" method="post" class="form-horizontal">
-```
-
-Nette's server-side validation runs in both cases.
-
-## Custom wrappers
-
-`$wrappers` is the public array from `DefaultFormRenderer`; every renderer starts with its own values (listed in the [API reference](/api/reference#wrappers)). Change it on the instance, for example for a 4 + 8 grid:
-
-```php
-use Nette\Forms\Form;
-use Tomaj\Form\Renderer\BootstrapRenderer;
-
-$renderer = new BootstrapRenderer();
-$renderer->wrappers['label']['container'] = 'div class="col-sm-4 control-label"';
-$renderer->wrappers['control']['container'] = 'div class=col-sm-8';
-
-$form = new Form();
-$form->addText('name', 'Name');
-echo $renderer->render($form, 'body');
-```
-
-<!-- snippet: output -->
-```html
-<div>
-<div class="form-group">
-	<div class="col-sm-4 control-label"><label for="frm-name">Name</label></div>
-	<div class="col-sm-8"><input type="text" name="name" class="form-control text" id="frm-name"></div>
-</div>
-</div>
-```
-
-The renderer classes are `final` since 3.0; configure an instance like this instead of subclassing. If several forms need the same configuration, create the renderer in a factory or register it as a service.
-
-## Rendering part by part
-
-Like the default renderer, `render()` takes a mode: `begin`, `errors` (all errors), `ownerrors` (only the form's own errors), `body` or `end`. The Bootstrap classes are added on the first call, so the parts match the full rendering:
-
-```php
-use Nette\Forms\Form;
-use Tomaj\Form\Renderer\BootstrapVerticalRenderer;
-
-$form = new Form();
-$form->addText('name', 'Name');
-$form->addSubmit('send', 'Send');
-
-$renderer = new BootstrapVerticalRenderer();
-echo $renderer->render($form, 'begin');
-echo $renderer->render($form, 'errors');
-echo $renderer->render($form, 'body');
-echo $renderer->render($form, 'end');
-```
-
-Manual rendering in Latte (`{form}` with `{label}` and `{input}`) does not call the renderer, so the Bootstrap classes are not added; write them in the template there. `{control myForm}` and `echo $form` use the renderer.
+You can mix them: each form has its own renderer.

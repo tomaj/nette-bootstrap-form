@@ -115,6 +115,8 @@ skip_args=(
   --skip 'https://github\.com/tomaj/nette-bootstrap-form/blob/master/'
   --skip 'https://github\.com/tomaj/nette-bootstrap-form/tree/master/'
   --skip 'https://tomaj\.github\.io/nette-bootstrap-form/'
+  # the rendered example forms in previews/ link to paths of an imaginary application (/sign/forgot)
+  --skip '^http://127\.0\.0\.1:[0-9]+/(?!nette-bootstrap-form/)'
 )
 
 run_check() {
@@ -137,13 +139,14 @@ while true; do
   if [[ "$status" -eq 0 ]]; then
     break
   fi
-  mapfile -t codes < <(grep -oE '\[[0-9]{3}\]' /tmp/docs-linkinator.txt | tr -d '[]' | sort -u)
-  if [[ ${#codes[@]} -eq 0 ]]; then
+  # no mapfile: macOS ships bash 3.2
+  codes="$(grep -oE '\[[0-9]{3}\]' /tmp/docs-linkinator.txt | tr -d '[]' | sort -u || true)"
+  if [[ -z "$codes" ]]; then
     exit "$status"
   fi
   only_rate_limit=1
   retryable=1
-  for code in "${codes[@]}"; do
+  for code in $codes; do
     if [[ "$code" != "429" ]]; then
       only_rate_limit=0
     fi
