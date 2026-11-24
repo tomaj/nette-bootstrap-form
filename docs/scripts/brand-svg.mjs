@@ -46,32 +46,60 @@ for (const [name, t] of [['logo.svg', themes.light], ['logo-dark.svg', themes.da
 </svg>`)
 }
 
+// Text in the hero and the diagrams, per docs language (the Slovak pages under docs/sk/ use the -sk files).
+const langs = {
+  en: {
+    suffix: '',
+    heroAria: 'A browser window shows a horizontal Bootstrap form with labels on the left, inputs on the right, a radio list and a primary Save button. A code card below sets the BootstrapRenderer on the form.',
+    name: 'Name', email: 'E-mail', plan: 'Plan', free: 'Free', pro: 'Pro', newsletter: 'Send me the newsletter', save: 'Save', cancel: 'Cancel',
+    saveWidth: 76,
+    anatomyAria: 'One label and control pair of BootstrapRenderer. The outer div.form-group is wrappers pair container, with has-error from pair .error. Inside, div.col-sm-3.control-label is label container around the label, and div.col-sm-9 is control container around the input with form-control, the description span.help-block from control description and the error span.help-block from control errorcontainer.',
+    password: 'Password', hint: 'At least 8 characters.', error: 'The password must have at least 8 characters.',
+    hintTag: 490, legend: 'control.description → help text,  control.errorcontainer → error',
+    flowAria: "Rendering flow: your Nette Form goes to the Bootstrap renderer's render method, which adds Bootstrap classes to the form and its controls, then Nette's DefaultFormRenderer wraps every pair using the renderer's wrappers array and returns the HTML.",
+    yourForm: 'Your form', formLines: ['controls, rules,', 'groups, errors'], decorate: '1. Decorate', render: '2. Render', withWrappers: 'with $wrappers',
+    flowNote: 'both steps run inside BootstrapRenderer::render(), on every echo $form or {control form}',
+  },
+  sk: {
+    suffix: '-sk',
+    heroAria: 'Okno prehliadača s horizontálnym formulárom Bootstrapu: popisky vľavo, polia vpravo, prepínače a hlavné tlačidlo Uložiť. Pod ním kód, ktorý formuláru nastaví BootstrapRenderer.',
+    name: 'Meno', email: 'E-mail', plan: 'Tarif', free: 'Free', pro: 'Pro', newsletter: 'Posielať mi newsletter', save: 'Uložiť', cancel: 'Zrušiť',
+    saveWidth: 76,
+    anatomyAria: 'Jedna dvojica popisku a prvku v BootstrapRenderer. Vonkajší div.form-group je wrappers pair container, s has-error z pair .error. Vnútri je div.col-sm-3.control-label (label container) okolo popisku a div.col-sm-9 (control container) okolo poľa s form-control, popisu span.help-block z control description a chybovej hlášky span.help-block z control errorcontainer.',
+    password: 'Heslo', hint: 'Aspoň 8 znakov.', error: 'Heslo musí mať aspoň 8 znakov.',
+    hintTag: 490, legend: 'control.description → popis,  control.errorcontainer → chyba',
+    flowAria: 'Postup vykreslenia: váš Nette formulár prejde metódou render() Bootstrap vykresľovača, ktorá formuláru a jeho prvkom pridá triedy Bootstrapu, potom DefaultFormRenderer z Nette obalí každú dvojicu podľa poľa $wrappers vykresľovača a vráti HTML.',
+    yourForm: 'Váš formulár', formLines: ['prvky, pravidlá,', 'skupiny, chyby'], decorate: '1. Doplnenie tried', render: '2. Vykreslenie', withWrappers: 's $wrappers',
+    flowNote: 'oba kroky bežia v BootstrapRenderer::render() pri každom echo $form alebo {control form}',
+  },
+}
+
 // --- hero: a browser window with a horizontal Bootstrap form, and the line of PHP that made it ----
-function hero(t) {
+function hero(t, L) {
   const row = (y, label, w = 300) => `
     <text x="150" y="${y + 21}" text-anchor="end" font-family="${sans}" font-size="14" font-weight="600" fill="${t.text}">${label}</text>
     <rect x="166" y="${y}" width="${w}" height="32" rx="5" fill="${t.input}" stroke="${t.inputLine}" stroke-width="1.5"/>`
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 440" width="560" height="440" role="img" aria-label="A browser window shows a horizontal Bootstrap form with labels on the left, inputs on the right, a radio list and a primary Save button. A code card below sets the BootstrapRenderer on the form.">
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 440" width="560" height="440" role="img" aria-label="${L.heroAria}">
   <rect x="20" y="16" width="520" height="330" rx="16" fill="${t.bg}" stroke="${t.line}" stroke-width="2"/>
   <path d="M20 32 a16 16 0 0 1 16 -16 h488 a16 16 0 0 1 16 16 v20 h-520 z" fill="${t.chrome}"/>
   <line x1="20" y1="52" x2="540" y2="52" stroke="${t.line}" stroke-width="2"/>
   <circle cx="44" cy="34" r="6" fill="#ff6159"/><circle cx="64" cy="34" r="6" fill="#ffbd2e"/><circle cx="84" cy="34" r="6" fill="#28c941"/>
   <rect x="110" y="25" width="300" height="18" rx="9" fill="${t.bg}" stroke="${t.line}"/>
   <text x="124" y="38" font-family="${sans}" font-size="11" fill="${t.muted}">shop.example/profile</text>
-  ${row(76, 'Name')}
-  ${row(124, 'E-mail')}
-  <text x="150" y="193" text-anchor="end" font-family="${sans}" font-size="14" font-weight="600" fill="${t.text}">Plan</text>
+  ${row(76, L.name)}
+  ${row(124, L.email)}
+  <text x="150" y="193" text-anchor="end" font-family="${sans}" font-size="14" font-weight="600" fill="${t.text}">${L.plan}</text>
   <circle cx="176" cy="188" r="7" fill="${t.input}" stroke="${t.brand}" stroke-width="2"/><circle cx="176" cy="188" r="3.5" fill="${t.brand}"/>
-  <text x="190" y="193" font-family="${sans}" font-size="14" fill="${t.text}">Free</text>
+  <text x="190" y="193" font-family="${sans}" font-size="14" fill="${t.text}">${L.free}</text>
   <circle cx="248" cy="188" r="7" fill="${t.input}" stroke="${t.inputLine}" stroke-width="2"/>
-  <text x="262" y="193" font-family="${sans}" font-size="14" fill="${t.text}">Pro</text>
+  <text x="262" y="193" font-family="${sans}" font-size="14" fill="${t.text}">${L.pro}</text>
   <rect x="168" y="216" width="14" height="14" rx="3" fill="${t.brand}"/>
   <path d="M171 223 l3 3 l6 -6" fill="none" stroke="${t.brandText}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="190" y="228" font-family="${sans}" font-size="14" fill="${t.text}">Send me the newsletter</text>
+  <text x="190" y="228" font-family="${sans}" font-size="14" fill="${t.text}">${L.newsletter}</text>
   <rect x="166" y="252" width="76" height="34" rx="5" fill="${t.brand}"/>
-  <text x="204" y="274" text-anchor="middle" font-family="${sans}" font-size="14" font-weight="600" fill="${t.brandText}">Save</text>
+  <text x="204" y="274" text-anchor="middle" font-family="${sans}" font-size="14" font-weight="600" fill="${t.brandText}">${L.save}</text>
   <rect x="252" y="252" width="84" height="34" rx="5" fill="${t.input}" stroke="${t.inputLine}" stroke-width="1.5"/>
-  <text x="294" y="274" text-anchor="middle" font-family="${sans}" font-size="14" fill="${t.text}">Cancel</text>
+  <text x="294" y="274" text-anchor="middle" font-family="${sans}" font-size="14" fill="${t.text}">${L.cancel}</text>
   <line x1="158" y1="70" x2="158" y2="296" stroke="${t.brand}" stroke-width="1.5" stroke-dasharray="4 5" opacity="0.55"/>
   <text x="44" y="320" font-family="${mono}" font-size="11" fill="${t.muted}">col-sm-3</text>
   <text x="166" y="320" font-family="${mono}" font-size="11" fill="${t.muted}">col-sm-9 · form-control · btn btn-primary</text>
@@ -82,8 +110,10 @@ function hero(t) {
   </g>
 </svg>`
 }
-out('illustrations/hero-light.svg', hero(themes.light))
-out('illustrations/hero-dark.svg', hero(themes.dark))
+for (const L of Object.values(langs)) {
+  out(`illustrations/hero${L.suffix}-light.svg`, hero(themes.light, L))
+  out(`illustrations/hero${L.suffix}-dark.svg`, hero(themes.dark, L))
+}
 
 // --- feature icons, 48 × 48 ----------------------------------------------------------------------
 const icons = {
@@ -120,56 +150,60 @@ for (const [name, draw] of Object.entries(icons)) {
 }
 
 // --- diagram: which $wrappers key draws which element of a horizontal pair -----------------------
-function anatomy(t) {
+function anatomy(t, L) {
   const key = (x, y, text, anchor = 'start') => `<text x="${x}" y="${y}" text-anchor="${anchor}" font-family="${mono}" font-size="13" fill="${t.brand}">${text}</text>`
   const tag = (x, y, text) => `<text x="${x}" y="${y}" font-family="${mono}" font-size="12" fill="${t.muted}">${text}</text>`
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 340" width="760" height="340" role="img" aria-label="One label and control pair of BootstrapRenderer. The outer div.form-group is wrappers pair container, with has-error from pair .error. Inside, div.col-sm-3.control-label is label container around the label, and div.col-sm-9 is control container around the input with form-control, the description span.help-block from control description and the error span.help-block from control errorcontainer.">
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 340" width="760" height="340" role="img" aria-label="${L.anatomyAria}">
   <rect x="1" y="1" width="758" height="338" rx="14" fill="${t.panel}" stroke="${t.line}" stroke-width="1.5"/>
   <rect x="24" y="44" width="712" height="226" rx="10" fill="${t.bg}" stroke="${t.brand}" stroke-width="2"/>
   ${tag(36, 36, 'div.form-group.required.has-error')}
   ${key(724, 36, "pair.container · pair..required · pair..error", 'end')}
   <rect x="44" y="84" width="190" height="80" rx="8" fill="${t.soft}" stroke="${t.brand}" stroke-width="1.5" stroke-dasharray="6 4"/>
   ${tag(48, 76, 'div.col-sm-3.control-label')}
-  <text x="218" y="130" text-anchor="end" font-family="${sans}" font-size="16" font-weight="700" fill="${t.text}">Password</text>
+  <text x="218" y="130" text-anchor="end" font-family="${sans}" font-size="16" font-weight="700" fill="${t.text}">${L.password}</text>
   <rect x="254" y="84" width="462" height="166" rx="8" fill="${t.soft}" stroke="${t.brand}" stroke-width="1.5" stroke-dasharray="6 4"/>
   ${tag(258, 76, 'div.col-sm-9')}
   <rect x="272" y="104" width="426" height="38" rx="5" fill="${t.input}" stroke="${t.error}" stroke-width="2"/>
   <text x="286" y="128" font-family="${sans}" font-size="15" fill="${t.text}">•••••</text>
   ${tag(560, 128, 'input.form-control')}
-  <text x="272" y="170" font-family="${sans}" font-size="14" fill="${t.muted}">At least 8 characters.</text>
-  ${tag(490, 170, 'span.help-block')}
-  <text x="272" y="200" font-family="${sans}" font-size="14" fill="${t.error}">The password must have at least 8 characters.</text>
+  <text x="272" y="170" font-family="${sans}" font-size="14" fill="${t.muted}">${L.hint}</text>
+  ${tag(L.hintTag, 170, 'span.help-block')}
+  <text x="272" y="200" font-family="${sans}" font-size="14" fill="${t.error}">${L.error}</text>
   ${tag(272, 232, 'span.help-block')}
   ${key(44, 298, "label.container")}
   <path d="M100 286 V168" stroke="${t.brand}" stroke-width="1.5" marker-end="url(#arrow-${t.bg.slice(1)})"/>
   ${key(254, 298, "control.container")}
-  ${key(254, 318, "control.description → help text,  control.errorcontainer → error")}
+  ${key(254, 318, L.legend)}
   <defs><marker id="arrow-${t.bg.slice(1)}" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="${t.brand}"/></marker></defs>
 </svg>`
 }
-out('diagrams/wrappers-anatomy-light.svg', anatomy(themes.light))
-out('diagrams/wrappers-anatomy-dark.svg', anatomy(themes.dark))
+for (const L of Object.values(langs)) {
+  out(`diagrams/wrappers-anatomy${L.suffix}-light.svg`, anatomy(themes.light, L))
+  out(`diagrams/wrappers-anatomy${L.suffix}-dark.svg`, anatomy(themes.dark, L))
+}
 
 // --- diagram: what render() does -------------------------------------------------------------------
-function flow(t) {
+function flow(t, L) {
   const box = (x, title, lines, fill = t.bg) => `
   <rect x="${x}" y="40" width="200" height="150" rx="12" fill="${fill}" stroke="${t.brand}" stroke-width="2"/>
   <text x="${x + 100}" y="72" text-anchor="middle" font-family="${sans}" font-size="16" font-weight="700" fill="${t.text}">${title}</text>
   ${lines.map((l, i) => `<text x="${x + 100}" y="${102 + i * 22}" text-anchor="middle" font-family="${mono}" font-size="12" fill="${t.muted}">${l}</text>`).join('\n  ')}`
   const arrow = (x) => `<path d="M${x} 115 h36" stroke="${t.brand}" stroke-width="2.5" marker-end="url(#flow-${t.bg.slice(1)})"/>`
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 230" width="760" height="230" role="img" aria-label="Rendering flow: your Nette Form goes to the Bootstrap renderer's render method, which adds Bootstrap classes to the form and its controls, then Nette's DefaultFormRenderer wraps every pair using the renderer's wrappers array and returns the HTML.">
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 230" width="760" height="230" role="img" aria-label="${L.flowAria}">
   <defs><marker id="flow-${t.bg.slice(1)}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="${t.brand}"/></marker></defs>
   <rect x="1" y="1" width="758" height="228" rx="14" fill="${t.panel}" stroke="${t.line}" stroke-width="1.5"/>
-  ${box(20, 'Your form', ['Nette\\Forms\\Form', 'controls, rules,', 'groups, errors'])}
+  ${box(20, L.yourForm, ['Nette\\Forms\\Form', ...L.formLines])}
   ${arrow(222)}
-  ${box(280, '1. Decorate', ['form-horizontal', 'novalidate', 'form-control · btn', 'div.checkbox · div.radio'], t.soft)}
+  ${box(280, L.decorate, ['form-horizontal', 'novalidate', 'form-control · btn', 'div.checkbox · div.radio'], t.soft)}
   ${arrow(482)}
-  ${box(540, '2. Render', ['DefaultFormRenderer', 'with $wrappers', '→ Bootstrap HTML'], t.soft)}
-  <text x="380" y="216" text-anchor="middle" font-family="${sans}" font-size="13" fill="${t.muted}">both steps run inside BootstrapRenderer::render(), on every echo $form or {control form}</text>
+  ${box(540, L.render, ['DefaultFormRenderer', L.withWrappers, '→ Bootstrap HTML'], t.soft)}
+  <text x="380" y="216" text-anchor="middle" font-family="${sans}" font-size="13" fill="${t.muted}">${L.flowNote}</text>
 </svg>`
 }
-out('diagrams/render-flow-light.svg', flow(themes.light))
-out('diagrams/render-flow-dark.svg', flow(themes.dark))
+for (const L of Object.values(langs)) {
+  out(`diagrams/render-flow${L.suffix}-light.svg`, flow(themes.light, L))
+  out(`diagrams/render-flow${L.suffix}-dark.svg`, flow(themes.dark, L))
+}
 
 // --- social card, rasterized by brand-png.mjs ------------------------------------------------------
 {

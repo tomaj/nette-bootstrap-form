@@ -5,9 +5,11 @@
 // at the real width, so the preview is what a phone would show.
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { withBase } from 'vitepress'
+import { useStrings } from './i18n'
 
 const props = withDefaults(defineProps<{ name: string, title?: string, width?: number }>(), { width: 800 })
 
+const t = useStrings()
 const src = withBase(`/previews/${props.name}.html`)
 const frame = ref<HTMLIFrameElement>()
 const box = ref<HTMLDivElement>()
@@ -54,13 +56,13 @@ function loaded(): void {
     <div class="form-preview-bar">
       <span class="form-preview-dots" aria-hidden="true"><i /><i /><i /></span>
       <span class="form-preview-title">{{ title ?? `examples/${name}` }} · Bootstrap 3.4.1</span>
-      <a class="form-preview-open" :href="src" target="_blank" rel="noopener">Open ↗</a>
+      <a class="form-preview-open" :href="src" target="_blank" rel="noopener" :title="t.openTitle">{{ t.open }}</a>
     </div>
     <div ref="box" class="form-preview-body" :style="{ height: `${Math.ceil(height * scale)}px` }">
       <iframe
         ref="frame"
         :src="src"
-        :title="`Rendered output of examples/${name} with Bootstrap 3 CSS`"
+        :title="t.previewTitle(name)"
         loading="lazy"
         scrolling="no"
         :style="{

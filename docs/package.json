@@ -14,7 +14,8 @@
     "docs:preview": "vitepress preview",
     "docs:links": "bash scripts/check-links.sh",
     "brand": "node scripts/brand-svg.mjs && node scripts/brand-png.mjs",
-    "check:svg": "python3 scripts/check-svg.py"
+    "check:svg": "python3 scripts/check-svg.py",
+    "check:locales": "python3 scripts/check-locales.py"
   },
   "license": "LGPL-2.0-or-later",
   "devDependencies": {
