@@ -1,12 +1,11 @@
 // Rasterizes the SVG artwork written by brand-svg.mjs: the favicon PNGs, favicon.ico (16, 32 and
-// 48 px PNG entries), the web manifest icons and the 1200 × 630 social card og.png.
+// 48 px PNG entries), the web manifest icons and the 1200 × 630 social cards og.png and og-sk.png.
 // Needs Chrome: CHROME_PATH=/path/to/chrome node scripts/brand-png.mjs
 import { readFileSync, writeFileSync } from 'node:fs'
 import puppeteer from 'puppeteer-core'
 
 const pub = (path) => new URL(`../public/${path}`, import.meta.url)
 const logo = readFileSync(pub('logo.svg'), 'utf8')
-const og = readFileSync(pub('og.svg'), 'utf8')
 
 const browser = await puppeteer.launch({
   executablePath: process.env.CHROME_PATH || '/usr/bin/google-chrome',
@@ -57,7 +56,9 @@ entries.forEach(({ size, data }, i) => {
 })
 writeFileSync(pub('favicon.ico'), Buffer.concat([header, ...entries.map((e) => e.data)]))
 
-writeFileSync(pub('og.png'), await render(og, 1200, 630, '#ffffff'))
+for (const name of ['og', 'og-sk']) {
+  writeFileSync(pub(`${name}.png`), await render(readFileSync(pub(`${name}.svg`), 'utf8'), 1200, 630, '#ffffff'))
+}
 
 await browser.close()
-console.log('favicon PNGs, favicon.ico, apple-touch-icon.png and og.png written')
+console.log('favicon PNGs, favicon.ico, apple-touch-icon.png, og.png and og-sk.png written')
