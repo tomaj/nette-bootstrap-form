@@ -55,6 +55,7 @@
 
 /* Hero illustration and feature icons: a dark variant of each image. */
 .dark .VPHero img.image-src { content: url("/nette-bootstrap-form/illustrations/hero-dark.svg"); }
+.dark .VPHero img.image-src[src$="/illustrations/hero-sk-light.svg"] { content: url("/nette-bootstrap-form/illustrations/hero-sk-dark.svg"); }
 .dark .VPFeature img[src$="/icons/horizontal.svg"] { content: url("/nette-bootstrap-form/icons/horizontal-dark.svg"); }
 .dark .VPFeature img[src$="/icons/vertical.svg"] { content: url("/nette-bootstrap-form/icons/vertical-dark.svg"); }
 .dark .VPFeature img[src$="/icons/inline.svg"] { content: url("/nette-bootstrap-form/icons/inline-dark.svg"); }

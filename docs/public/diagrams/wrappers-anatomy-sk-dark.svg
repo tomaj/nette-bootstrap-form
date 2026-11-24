@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 340" width="760" height="340" role="img" aria-label="Jedna dvojica popisku a prvku v BootstrapRenderer. Vonkajší div.form-group je wrappers pair container, s has-error z pair .error. Vnútri je div.col-sm-3.control-label (label container) okolo popisku a div.col-sm-9 (control container) okolo poľa s form-control, popisu span.help-block z control description a chybovej hlášky span.help-block z control errorcontainer.">
+  <rect x="1" y="1" width="758" height="338" rx="14" fill="#221d31" stroke="#3d3456" stroke-width="1.5"/>
+  <rect x="24" y="44" width="712" height="226" rx="10" fill="#1b1726" stroke="#9f7aea" stroke-width="2"/>
+  <text x="36" y="36" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a89fc2">div.form-group.required.has-error</text>
+  <text x="724" y="36" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#9f7aea">pair.container · pair..required · pair..error</text>
+  <rect x="44" y="84" width="190" height="80" rx="8" fill="#2c2441" stroke="#9f7aea" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="48" y="76" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a89fc2">div.col-sm-3.control-label</text>
+  <text x="218" y="130" text-anchor="end" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#ece6fa">Heslo</text>
+  <rect x="254" y="84" width="462" height="166" rx="8" fill="#2c2441" stroke="#9f7aea" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="258" y="76" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a89fc2">div.col-sm-9</text>
+  <rect x="272" y="104" width="426" height="38" rx="5" fill="#16121f" stroke="#f0716d" stroke-width="2"/>
+  <text x="286" y="128" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" fill="#ece6fa">•••••</text>
+  <text x="560" y="128" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a89fc2">input.form-control</text>
+  <text x="272" y="170" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#a89fc2">Aspoň 8 znakov.</text>
+  <text x="490" y="170" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a89fc2">span.help-block</text>
+  <text x="272" y="200" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#f0716d">Heslo musí mať aspoň 8 znakov.</text>
+  <text x="272" y="232" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a89fc2">span.help-block</text>
+  <text x="44" y="298" text-anchor="start" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#9f7aea">label.container</text>
+  <path d="M100 286 V168" stroke="#9f7aea" stroke-width="1.5" marker-end="url(#arrow-1b1726)"/>
+  <text x="254" y="298" text-anchor="start" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#9f7aea">control.container</text>
+  <text x="254" y="318" text-anchor="start" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#9f7aea">control.description → popis,  control.errorcontainer → chyba</text>
+  <defs><marker id="arrow-1b1726" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#9f7aea"/></marker></defs>
+</svg>

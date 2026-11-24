@@ -39,6 +39,8 @@ npm run docs:links  # build and check every link
 
 Every `php` code block in these pages, `README.md` and `UPGRADE-3.0.md` is run by `tests/DocsSnippetsTest.php` in the PHPUnit suite. A block marked with `<!-- snippet: skip -->` is not run; an `html` block marked with `<!-- snippet: output -->` must match the output of the PHP block before it.
 
+The Slovak pages in `docs/sk/` have the same paths as the English ones and the same code blocks; when you change an English page, update its Slovak twin too. `python3 scripts/check-locales.py` (run in CI) fails when a page has no twin or the code blocks differ.
+
 ### Examples
 
 The [examples](/examples/) live in `examples/<name>/` (`composer.json`, `run.php`, `expected-output.txt`). The example pages include their files with `<<< @/../examples/<name>/run.php`, so the docs show the tested code. `npm run docs:build` first runs `scripts/previews.mjs`, which turns every `expected-output.txt` into `public/previews/<name>.html` with Bootstrap 3.4.1 CSS (vendored in `public/vendor/`) for the `<FormPreview>` component.
@@ -48,7 +50,7 @@ examples/ci/example.sh layouts            # run one example against this checkou
 examples/ci/example.sh --update layouts   # write the new output after an intended change
 ```
 
-A new example needs a page in `docs/examples/`, an entry in the sidebar (`docs/.vitepress/config.mts`) and in the matrix of `.github/workflows/examples.yml`.
+A new example needs a page in `docs/examples/` (and in `docs/sk/examples/`), an entry in the sidebar (`docs/.vitepress/config.mts`) and in the matrix of `.github/workflows/examples.yml`.
 
 ### Artwork
 

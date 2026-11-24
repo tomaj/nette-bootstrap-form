@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 440" width="560" height="440" role="img" aria-label="Okno prehliadača s horizontálnym formulárom Bootstrapu: popisky vľavo, polia vpravo, prepínače a hlavné tlačidlo Uložiť. Pod ním kód, ktorý formuláru nastaví BootstrapRenderer.">
+  <rect x="20" y="16" width="520" height="330" rx="16" fill="#1b1726" stroke="#3d3456" stroke-width="2"/>
+  <path d="M20 32 a16 16 0 0 1 16 -16 h488 a16 16 0 0 1 16 16 v20 h-520 z" fill="#2a2339"/>
+  <line x1="20" y1="52" x2="540" y2="52" stroke="#3d3456" stroke-width="2"/>
+  <circle cx="44" cy="34" r="6" fill="#ff6159"/><circle cx="64" cy="34" r="6" fill="#ffbd2e"/><circle cx="84" cy="34" r="6" fill="#28c941"/>
+  <rect x="110" y="25" width="300" height="18" rx="9" fill="#1b1726" stroke="#3d3456"/>
+  <text x="124" y="38" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#a89fc2">shop.example/profile</text>
+    <text x="150" y="97" text-anchor="end" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#ece6fa">Meno</text>
+    <rect x="166" y="76" width="300" height="32" rx="5" fill="#16121f" stroke="#4a4064" stroke-width="1.5"/>
+    <text x="150" y="145" text-anchor="end" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#ece6fa">E-mail</text>
+    <rect x="166" y="124" width="300" height="32" rx="5" fill="#16121f" stroke="#4a4064" stroke-width="1.5"/>
+  <text x="150" y="193" text-anchor="end" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#ece6fa">Tarif</text>
+  <circle cx="176" cy="188" r="7" fill="#16121f" stroke="#9f7aea" stroke-width="2"/><circle cx="176" cy="188" r="3.5" fill="#9f7aea"/>
+  <text x="190" y="193" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#ece6fa">Free</text>
+  <circle cx="248" cy="188" r="7" fill="#16121f" stroke="#4a4064" stroke-width="2"/>
+  <text x="262" y="193" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#ece6fa">Pro</text>
+  <rect x="168" y="216" width="14" height="14" rx="3" fill="#9f7aea"/>
+  <path d="M171 223 l3 3 l6 -6" fill="none" stroke="#160f26" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="190" y="228" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#ece6fa">Posielať mi newsletter</text>
+  <rect x="166" y="252" width="76" height="34" rx="5" fill="#9f7aea"/>
+  <text x="204" y="274" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#160f26">Uložiť</text>
+  <rect x="252" y="252" width="84" height="34" rx="5" fill="#16121f" stroke="#4a4064" stroke-width="1.5"/>
+  <text x="294" y="274" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#ece6fa">Zrušiť</text>
+  <line x1="158" y1="70" x2="158" y2="296" stroke="#9f7aea" stroke-width="1.5" stroke-dasharray="4 5" opacity="0.55"/>
+  <text x="44" y="320" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#a89fc2">col-sm-3</text>
+  <text x="166" y="320" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#a89fc2">col-sm-9 · form-control · btn btn-primary</text>
+  <g transform="translate(58 352)">
+    <rect width="444" height="64" rx="12" fill="#120e1c"/>
+    <rect width="444" height="64" rx="12" fill="none" stroke="#9f7aea" stroke-opacity="0.6" stroke-width="1.5"/>
+    <text x="22" y="38" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" fill="#ede7fb">$form-&gt;<tspan fill="#c6a8ff">setRenderer</tspan>(<tspan fill="#ffd27a">new</tspan> <tspan fill="#c6a8ff">BootstrapRenderer</tspan>());</text>
+  </g>
+</svg>
