@@ -22,6 +22,8 @@ $form->httpRequest = new Request(
         'send' => 'Create account',
         '_form_' => 'register', // the hidden field that tells named forms apart
     ],
+    // what a browser sends with a same-site request; nette/forms refuses cross-site POSTs
+    cookies: ['_nss' => '1'],
     headers: ['Sec-Fetch-Site' => 'same-origin'],
     method: 'POST',
 );

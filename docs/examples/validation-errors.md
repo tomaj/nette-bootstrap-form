@@ -9,7 +9,7 @@ A registration form submitted with an invalid e-mail, an age under 18, a short p
 
 <<< @/../examples/validation-errors/run.php
 
-In an application the POST data come from the browser. Here a `Nette\Http\Request` is built by hand: the `Sec-Fetch-Site` header is what a browser sends for a same-origin request (nette/forms refuses cross-origin POSTs), and `_form_` is the hidden field of a named form. [Testing your forms](/guide/testing#submitting-a-form-in-a-test) explains the technique.
+In an application the POST data come from the browser. Here a `Nette\Http\Request` is built by hand: the `Sec-Fetch-Site` header and the `_nss` cookie are what a browser sends with a same-site request (nette/forms refuses cross-site POSTs), and `_form_` is the hidden field of a named form. [Testing your forms](/guide/testing#submitting-a-form-in-a-test) explains the technique.
 
 ## Preview
 

@@ -76,6 +76,7 @@ $form = new Form();
 $form->httpRequest = new Request(
     new UrlScript('https://example.com/'),
     post: ['email' => 'not an e-mail', 'send' => 'Send'],
+    cookies: ['_nss' => '1'],
     headers: ['Sec-Fetch-Site' => 'same-origin'],
     method: 'POST',
 );
@@ -104,7 +105,7 @@ invalid: Please enter a valid email address.
 </div>
 ```
 
-The `Sec-Fetch-Site: same-origin` header is what a browser sends; without it nette/forms refuses a cross-origin POST (unless the form calls `allowCrossOrigin()`). A form created with a name (`new Form('register')`) also needs `'_form_' => 'register'` in the POST data. [`examples/validation-errors`](/examples/validation-errors) is a complete version of this test.
+The `Sec-Fetch-Site: same-origin` header and the `_nss` cookie (a `SameSite=Strict` cookie that Nette's HTTP response sets) are what a browser sends with a same-site request. nette/forms refuses a POST without them as cross-origin (unless the form calls `allowCrossOrigin()`); older nette/http versions check only the cookie, newer ones prefer the header. A form created with a name (`new Form('register')`) also needs `'_form_' => 'register'` in the POST data. [`examples/validation-errors`](/examples/validation-errors) is a complete version of this test.
 
 ## Testing in a Nette application
 
