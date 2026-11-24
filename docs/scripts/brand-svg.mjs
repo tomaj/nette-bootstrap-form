@@ -59,6 +59,7 @@ const langs = {
     flowAria: "Rendering flow: your Nette Form goes to the Bootstrap renderer's render method, which adds Bootstrap classes to the form and its controls, then Nette's DefaultFormRenderer wraps every pair using the renderer's wrappers array and returns the HTML.",
     yourForm: 'Your form', formLines: ['controls, rules,', 'groups, errors'], decorate: '1. Decorate', render: '2. Render', withWrappers: 'with $wrappers',
     flowNote: 'both steps run inside BootstrapRenderer::render(), on every echo $form or {control form}',
+    ogTagline: 'Bootstrap renderers for Nette Forms', ogFooter: 'Horizontal · vertical · inline',
   },
   sk: {
     suffix: '-sk',
@@ -71,6 +72,7 @@ const langs = {
     flowAria: 'Postup vykreslenia: váš Nette formulár prejde metódou render() Bootstrap vykresľovača, ktorá formuláru a jeho prvkom pridá triedy Bootstrapu, potom DefaultFormRenderer z Nette obalí každú dvojicu podľa poľa $wrappers vykresľovača a vráti HTML.',
     yourForm: 'Váš formulár', formLines: ['prvky, pravidlá,', 'skupiny, chyby'], decorate: '1. Doplnenie tried', render: '2. Vykreslenie', withWrappers: 's $wrappers',
     flowNote: 'oba kroky bežia v BootstrapRenderer::render() pri každom echo $form alebo {control form}',
+    ogTagline: 'Bootstrap vykresľovače pre Nette Forms', ogFooter: 'Horizontálne · vertikálne · inline',
   },
 }
 
@@ -205,15 +207,15 @@ for (const L of Object.values(langs)) {
   out(`diagrams/render-flow${L.suffix}-dark.svg`, flow(themes.dark, L))
 }
 
-// --- social card, rasterized by brand-png.mjs ------------------------------------------------------
-{
+// --- social cards og.svg and og-sk.svg, rasterized by brand-png.mjs --------------------------------
+for (const L of Object.values(langs)) {
   const t = themes.light
-  out('og.svg', `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  out(`og${L.suffix}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
   <defs><linearGradient id="og-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#faf8ff"/><stop offset="1" stop-color="#efe8fb"/></linearGradient></defs>
   <rect width="1200" height="630" fill="url(#og-bg)"/>
   <g transform="translate(80 92) scale(2)">${mark(t, 'og-mark')}</g>
   <text x="240" y="150" font-family="${sans}" font-size="64" font-weight="800" fill="#2b2340">Nette Bootstrap Form</text>
-  <text x="240" y="200" font-family="${sans}" font-size="30" fill="#6b6283">Bootstrap renderers for Nette Forms</text>
+  <text x="240" y="200" font-family="${sans}" font-size="30" fill="#6b6283">${L.ogTagline}</text>
   <g transform="translate(80 270)">
     <rect width="500" height="250" rx="16" fill="#1f1833"/>
     <text x="32" y="58" font-family="${mono}" font-size="22" fill="#ede7fb">$form = <tspan fill="#ffd27a">new</tspan> <tspan fill="#c6a8ff">Form</tspan>();</text>
@@ -225,16 +227,16 @@ for (const L of Object.values(langs)) {
   <path d="M600 395 h50" stroke="#6d3fc0" stroke-width="5" stroke-linecap="round"/><path d="M640 380 l16 15 l-16 15" fill="none" stroke="#6d3fc0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
   <g transform="translate(690 270)">
     <rect width="430" height="250" rx="16" fill="#ffffff" stroke="#d9cff0" stroke-width="2"/>
-    <text x="104" y="62" text-anchor="end" font-family="${sans}" font-size="20" font-weight="600" fill="#2b2340">Name</text>
+    <text x="104" y="62" text-anchor="end" font-family="${sans}" font-size="20" font-weight="600" fill="#2b2340">${L.name}</text>
     <rect x="122" y="36" width="280" height="40" rx="6" fill="#fff" stroke="#c9c2d8" stroke-width="2"/>
-    <text x="104" y="124" text-anchor="end" font-family="${sans}" font-size="20" font-weight="600" fill="#2b2340">E-mail</text>
+    <text x="104" y="124" text-anchor="end" font-family="${sans}" font-size="20" font-weight="600" fill="#2b2340">${L.email}</text>
     <rect x="122" y="98" width="280" height="40" rx="6" fill="#fff" stroke="#c9c2d8" stroke-width="2"/>
     <rect x="122" y="168" width="100" height="44" rx="6" fill="#6d3fc0"/>
-    <text x="172" y="197" text-anchor="middle" font-family="${sans}" font-size="20" font-weight="600" fill="#fff">Save</text>
+    <text x="172" y="197" text-anchor="middle" font-family="${sans}" font-size="20" font-weight="600" fill="#fff">${L.save}</text>
     <rect x="234" y="168" width="110" height="44" rx="6" fill="#fff" stroke="#c9c2d8" stroke-width="2"/>
-    <text x="289" y="197" text-anchor="middle" font-family="${sans}" font-size="20" fill="#2b2340">Cancel</text>
+    <text x="289" y="197" text-anchor="middle" font-family="${sans}" font-size="20" fill="#2b2340">${L.cancel}</text>
   </g>
-  <text x="80" y="580" font-family="${sans}" font-size="24" fill="#6b6283">Horizontal · vertical · inline   ·   PHP 8.4+   ·   tomaj.github.io/nette-bootstrap-form</text>
+  <text x="80" y="580" font-family="${sans}" font-size="24" fill="#6b6283">${L.ogFooter}   ·   PHP 8.4+   ·   tomaj.github.io/nette-bootstrap-form</text>
 </svg>`)
 }
 

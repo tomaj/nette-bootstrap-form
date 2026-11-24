@@ -7,6 +7,8 @@ import type { HeadConfig, PageData } from 'vitepress'
 export const base = '/nette-bootstrap-form/'
 export const siteUrl = `https://tomaj.github.io${base}`
 export const ogImage = `${siteUrl}og.png`
+// Slovak pages get the social card with the Slovak tagline.
+export const ogImageSk = `${siteUrl}og-sk.png`
 const siteName = 'Nette Bootstrap Form'
 const repoUrl = 'https://github.com/tomaj/nette-bootstrap-form'
 
@@ -99,6 +101,7 @@ export function seoHead(page: PageData, srcDir: string, siteDescription: string)
   const url = pageUrl(page.relativePath)
   const locale = localeOf(page.relativePath)
   const sk = locale.prefix === 'sk/'
+  const image = sk ? ogImageSk : ogImage
   const isHome = page.frontmatter.layout === 'home'
   const homeTitle = sk ? `${siteName}: Bootstrap vykresľovače pre Nette Forms` : `${siteName}: Bootstrap renderers for Nette Forms`
   const title = isHome ? homeTitle : `${page.title} | ${siteName}`
@@ -114,14 +117,14 @@ export function seoHead(page: PageData, srcDir: string, siteDescription: string)
     ['meta', { property: 'og:title', content: title }],
     ['meta', { property: 'og:description', content: description }],
     ['meta', { property: 'og:url', content: url }],
-    ['meta', { property: 'og:image', content: ogImage }],
+    ['meta', { property: 'og:image', content: image }],
     ['meta', { property: 'og:image:width', content: '1200' }],
     ['meta', { property: 'og:image:height', content: '630' }],
-    ['meta', { property: 'og:image:alt', content: 'Nette Bootstrap Form: PHP code that sets BootstrapRenderer on a form, and the rendered Bootstrap form' }],
+    ['meta', { property: 'og:image:alt', content: sk ? 'Nette Bootstrap Form: PHP kód, ktorý formuláru nastaví BootstrapRenderer, a vykreslený formulár Bootstrapu' : 'Nette Bootstrap Form: PHP code that sets BootstrapRenderer on a form, and the rendered Bootstrap form' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { name: 'twitter:title', content: title }],
     ['meta', { name: 'twitter:description', content: description }],
-    ['meta', { name: 'twitter:image', content: ogImage }],
+    ['meta', { name: 'twitter:image', content: image }],
     ['meta', { name: 'author', content: person.name }],
   ]
   for (const alt of alternates(page.relativePath, srcDir)) {
@@ -148,7 +151,7 @@ export function seoHead(page: PageData, srcDir: string, siteDescription: string)
       license: 'https://spdx.org/licenses/LGPL-2.0-or-later.html',
       softwareVersion: '3.x',
       author: { '@id': person['@id'] },
-      image: [{ '@id': logo['@id'] }, ogImage],
+      image: [{ '@id': logo['@id'] }, image],
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
     })
   } else {
@@ -160,7 +163,7 @@ export function seoHead(page: PageData, srcDir: string, siteDescription: string)
       url,
       mainEntityOfPage: url,
       inLanguage: locale.lang,
-      image: ogImage,
+      image,
       author: { '@id': person['@id'] },
       publisher: { '@id': person['@id'] },
       isPartOf: { '@id': website['@id'] },
