@@ -79,7 +79,8 @@ $form->httpRequest = new Request(
     headers: ['Sec-Fetch-Site' => 'same-origin'],
     method: 'POST',
 );
-$form->addEmail('email', 'E-mail')->setRequired();
+// addText() + Form::Email rather than addEmail(): newer nette/forms add maxlength="255" to addEmail()
+$form->addText('email', 'E-mail')->setRequired()->addRule(Form::Email);
 $form->addSubmit('send', 'Send');
 $form->onSuccess[] = static fn() => print "saved\n";
 $form->fireEvents();
@@ -95,7 +96,7 @@ echo $form->getRenderer()->render($form, 'body');
 invalid: Please enter a valid email address.
 <div class="form-group required has-error">
 	<label for="frm-email" class="required">E-mail</label>
-	<input type="email" name="email" maxlength="255" class="form-control" id="frm-email" required data-nette-rules='[{"op":":filled","msg":"This field is required."},{"op":":email","msg":"Please enter a valid email address."}]' value="not an e-mail">
+	<input type="email" name="email" class="form-control" id="frm-email" required data-nette-rules='[{"op":":filled","msg":"This field is required."},{"op":":email","msg":"Please enter a valid email address."}]' value="not an e-mail">
 	<span class="help-block">Please enter a valid email address.</span>
 </div>
 <div class="form-group">
