@@ -1,0 +1,15 @@
+{
+    "name": "tomaj/nette-bootstrap-form-example-inline-filter",
+    "description": "An order list filter rendered on one line by BootstrapInlineRenderer",
+    "license": "LGPL-2.0-or-later",
+    "type": "project",
+    "require": {
+        "php": "^8.4",
+        "tomaj/nette-bootstrap-form": "dev-master"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    }
+}

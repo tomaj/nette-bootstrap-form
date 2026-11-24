@@ -1,6 +1,6 @@
 ---
 title: Contributing
-description: How to contribute to nette-bootstrap-form, run the checks and change the documentation.
+description: 'How to contribute to nette-bootstrap-form, run the checks and change the documentation.'
 ---
 
 # Contributing
@@ -38,6 +38,28 @@ npm run docs:links  # build and check every link
 ```
 
 Every `php` code block in these pages, `README.md` and `UPGRADE-3.0.md` is run by `tests/DocsSnippetsTest.php` in the PHPUnit suite. A block marked with `<!-- snippet: skip -->` is not run; an `html` block marked with `<!-- snippet: output -->` must match the output of the PHP block before it.
+
+### Examples
+
+The [examples](/examples/) live in `examples/<name>/` (`composer.json`, `run.php`, `expected-output.txt`). The example pages include their files with `<<< @/../examples/<name>/run.php`, so the docs show the tested code. `npm run docs:build` first runs `scripts/previews.mjs`, which turns every `expected-output.txt` into `public/previews/<name>.html` with Bootstrap 3.4.1 CSS (vendored in `public/vendor/`) for the `<FormPreview>` component.
+
+```bash
+examples/ci/example.sh layouts            # run one example against this checkout, diff the output
+examples/ci/example.sh --update layouts   # write the new output after an intended change
+```
+
+A new example needs a page in `docs/examples/`, an entry in the sidebar (`docs/.vitepress/config.mts`) and in the matrix of `.github/workflows/examples.yml`.
+
+### Artwork
+
+The logo, favicon, hero illustration, feature icons and diagrams are drawn in `docs/scripts/brand-svg.mjs`, in a light and a dark variant. After a change:
+
+```bash
+cd docs
+node scripts/brand-svg.mjs                    # SVG files in public/
+CHROME_PATH=/path/to/chrome node scripts/brand-png.mjs   # favicon PNGs, favicon.ico, og.png
+npm run check:svg                             # every SVG is well-formed XML
+```
 
 ## Releases
 

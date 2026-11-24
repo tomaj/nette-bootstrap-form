@@ -1,0 +1,114 @@
+<form action="/profile" method="post" id="frm-profile" enctype="multipart/form-data" class="form-horizontal" novalidate="novalidate">
+
+<div>
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-profile-name">Name</label></div>
+
+	<div class="col-sm-9"><input type="text" name="name" placeholder="Jane Doe" class="form-control text" id="frm-profile-name"></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-profile-password">Password</label></div>
+
+	<div class="col-sm-9"><input type="password" name="password" class="form-control text" id="frm-profile-password"></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-profile-email">E-mail</label></div>
+
+	<div class="col-sm-9"><input type="email" name="email" maxlength="255" class="form-control" id="frm-profile-email" data-nette-rules='[{"op":":email","msg":"Please enter a valid email address."}]'></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-profile-age">Age</label></div>
+
+	<div class="col-sm-9"><input type="number" name="age" class="form-control" id="frm-profile-age" data-nette-rules='[{"op":":integer","msg":"Please enter a valid integer."}]'></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-profile-height">Height (m)</label></div>
+
+	<div class="col-sm-9"><input type="number" name="height" step="any" class="form-control" id="frm-profile-height" data-nette-rules='[{"op":":float","msg":"Please enter a valid number."}]'></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-profile-birthday">Birthday</label></div>
+
+	<div class="col-sm-9"><input type="date" name="birthday" id="frm-profile-birthday"></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-profile-alarm">Wake-up time</label></div>
+
+	<div class="col-sm-9"><input type="time" name="alarm" id="frm-profile-alarm"></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-profile-meeting">Next meeting</label></div>
+
+	<div class="col-sm-9"><input type="datetime-local" name="meeting" id="frm-profile-meeting"></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-profile-color">Favourite colour</label></div>
+
+	<div class="col-sm-9"><input type="color" name="color" id="frm-profile-color" value="#7952b3"></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-profile-bio">About you</label></div>
+
+	<div class="col-sm-9"><textarea name="bio" rows="3" class="form-control" id="frm-profile-bio"></textarea></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-profile-country">Country</label></div>
+
+	<div class="col-sm-9"><select name="country" class="form-control" id="frm-profile-country"><option value="">Choose a country</option><option value="sk">Slovakia</option><option value="cz">Czechia</option><option value="at">Austria</option></select></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-profile-languages">Languages</label></div>
+
+	<div class="col-sm-9"><select name="languages[]" class="form-control" id="frm-profile-languages" multiple><option value="en">English</option><option value="sk">Slovak</option><option value="de">German</option></select></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"></div>
+
+	<div class="col-sm-9"><div class="checkbox"><label for="frm-profile-terms"><input type="checkbox" name="terms" id="frm-profile-terms">I agree with the terms</label></div></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label>Topics</label></div>
+
+	<div class="col-sm-9"><div class="checkbox"><label><input type="checkbox" name="topics[]" value="php">PHP</label></div><div class="checkbox"><label><input type="checkbox" name="topics[]" value="nette">Nette</label></div><div class="checkbox"><label><input type="checkbox" name="topics[]" value="css">CSS</label></div></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label>Plan</label></div>
+
+	<div class="col-sm-9"><div class="radio"><label><input type="radio" name="plan" checked value="free">Free</label></div><div class="radio"><label><input type="radio" name="plan" value="pro">Pro</label></div></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-profile-avatar">Avatar</label></div>
+
+	<div class="col-sm-9"><input type="file" name="avatar" id="frm-profile-avatar" data-nette-rules='[{"op":":fileSize","msg":"The avatar can be up to 2 MB.","arg":2097152}]' class="text"></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"><label for="frm-profile-attachments">Attachments</label></div>
+
+	<div class="col-sm-9"><input type="file" name="attachments[]" multiple id="frm-profile-attachments" data-nette-rules='[{"op":":fileSize","msg":"Each attachment can be up to 10 MB.","arg":10485760},{"op":":maxLength","msg":"Attach at most 5 files.","arg":5}]' class="text"></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"></div>
+
+	<div class="col-sm-9"><input type="submit" name="save" class="btn btn-primary button" value="Save"> <input type="button" name="preview" class="btn btn-default button" value="Preview"> <input type="image" name="publish[]" src="/img/publish.png" alt="Publish" class="btn btn-default imagebutton"></div>
+</div>
+</div>
+
+<div><input type="hidden" name="_form_" value="profile"><input type="hidden" name="referrer" value="newsletter"></div>
+</form>

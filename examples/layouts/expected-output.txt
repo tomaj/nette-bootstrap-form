@@ -1,0 +1,96 @@
+<h4>BootstrapRenderer</h4>
+<form action="/contact" method="post" id="frm-horizontal" class="form-horizontal" novalidate="novalidate">
+
+<div>
+<div class="form-group required">
+	<div class="col-sm-3 control-label"><label for="frm-horizontal-name" class="required">Name</label></div>
+
+	<div class="col-sm-9"><input type="text" name="name" placeholder="Jane Doe" class="form-control text" id="frm-horizontal-name" required data-nette-rules='[{"op":":filled","msg":"Please enter your name."}]'></div>
+</div>
+
+<div class="form-group required">
+	<div class="col-sm-3 control-label"><label for="frm-horizontal-email" class="required">E-mail</label></div>
+
+	<div class="col-sm-9"><input type="email" name="email" maxlength="255" placeholder="jane&#64;example.com" class="form-control" id="frm-horizontal-email" required data-nette-rules='[{"op":":filled","msg":"Please enter your e-mail."},{"op":":email","msg":"Please enter a valid email address."}]'></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"></div>
+
+	<div class="col-sm-9"><div class="checkbox"><label for="frm-horizontal-newsletter"><input type="checkbox" name="newsletter" id="frm-horizontal-newsletter">Send me the newsletter</label></div></div>
+</div>
+
+<div class="form-group">
+	<div class="col-sm-3 control-label"></div>
+
+	<div class="col-sm-9"><input type="submit" name="send" class="btn btn-primary button" value="Send"></div>
+</div>
+</div>
+
+<div><input type="hidden" name="_form_" value="horizontal"></div>
+</form>
+
+<h4>BootstrapVerticalRenderer</h4>
+<form action="/contact" method="post" id="frm-vertical" novalidate="novalidate">
+
+
+<div class="form-group required">
+	<label for="frm-vertical-name" class="required">Name</label>
+
+	<input type="text" name="name" placeholder="Jane Doe" class="form-control text" id="frm-vertical-name" required data-nette-rules='[{"op":":filled","msg":"Please enter your name."}]'>
+</div>
+
+<div class="form-group required">
+	<label for="frm-vertical-email" class="required">E-mail</label>
+
+	<input type="email" name="email" maxlength="255" placeholder="jane&#64;example.com" class="form-control" id="frm-vertical-email" required data-nette-rules='[{"op":":filled","msg":"Please enter your e-mail."},{"op":":email","msg":"Please enter a valid email address."}]'>
+</div>
+
+<div class="form-group">
+	
+
+	<div class="checkbox"><label for="frm-vertical-newsletter"><input type="checkbox" name="newsletter" id="frm-vertical-newsletter">Send me the newsletter</label></div>
+</div>
+
+<div class="form-group">
+	
+
+	<input type="submit" name="send" class="btn btn-primary button" value="Send">
+</div>
+
+
+<div><input type="hidden" name="_form_" value="vertical"></div>
+</form>
+
+<h4>BootstrapInlineRenderer</h4>
+<form action="/contact" method="post" id="frm-inline" class="form-inline" novalidate="novalidate">
+
+
+<div class="form-group required">
+	<label for="frm-inline-name" class="required">Name</label>
+
+	<input type="text" name="name" placeholder="Jane Doe" class="form-control text" id="frm-inline-name" required data-nette-rules='[{"op":":filled","msg":"Please enter your name."}]'>
+</div>
+
+<div class="form-group required">
+	<label for="frm-inline-email" class="required">E-mail</label>
+
+	<input type="email" name="email" maxlength="255" placeholder="jane&#64;example.com" class="form-control" id="frm-inline-email" required data-nette-rules='[{"op":":filled","msg":"Please enter your e-mail."},{"op":":email","msg":"Please enter a valid email address."}]'>
+</div>
+
+<div class="form-group">
+	
+
+	<div class="checkbox"><label for="frm-inline-newsletter"><input type="checkbox" name="newsletter" id="frm-inline-newsletter">Send me the newsletter</label></div>
+</div>
+
+<div class="form-group">
+	
+
+	<input type="submit" name="send" class="btn btn-primary button" value="Send">
+</div>
+
+
+<div><input type="hidden" name="_form_" value="inline"></div>
+</form>
+

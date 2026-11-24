@@ -1,6 +1,6 @@
 ---
 title: API reference
-description: The public classes of nette-bootstrap-form, their constructor, render() and the $wrappers they start with.
+description: 'The public classes of nette-bootstrap-form, their constructor, render() and the $wrappers they start with.'
 ---
 
 # API reference
@@ -38,13 +38,16 @@ public function render(Nette\Forms\Form $form, ?string $mode = null): string
 
 Adds the Bootstrap classes to the form and its controls, then renders it with `DefaultFormRenderer::render()`. `$mode` is `null` for the whole form, or `'begin'`, `'errors'`, `'ownerrors'`, `'body'` or `'end'` for one part. Calling it several times on the same form (or part by part) gives the same HTML; the classes are not added twice.
 
-What changes on which control is listed in [Renderers](/guide/renderers#what-the-renderers-change):
+What changes on which control (details in [Controls](/guide/controls)):
 
 - `<form>`: the form class (see the table above), `novalidate="novalidate"` unless disabled
 - `TextBase` controls (text, password, text area, …), `SelectBox`, `MultiSelectBox`: `form-control`
-- `Button` controls (submit, button, image): `btn btn-primary` for the first one without a `btn` class, `btn btn-default` for the following ones; buttons with a `btn` class are untouched
+- `Button` controls (submit, button, image): `btn btn-primary` for the first one without a `btn` class, `btn btn-default` for the following ones; buttons whose class contains `btn` are untouched
+- `DateTimeControl`, `ColorPicker`, `UploadControl`, `HiddenField`: nothing
 - `Checkbox`: wrapped in `<div class="checkbox">`
 - `CheckboxList`, `RadioList`: each item wrapped in `<div class="checkbox">` / `<div class="radio">`
+
+It returns the HTML as a string and throws nothing of its own; exceptions come only from nette/forms (for example a `nextTo` option naming a control that does not exist).
 
 Usually you do not call `render()` yourself: set the renderer with `$form->setRenderer($renderer)` and render the form with `echo $form`, `$form->render()` or `{control form}` in Latte.
 
@@ -55,7 +58,7 @@ Usually you do not call `render()` yourself: set the renderer with `$form->setRe
 public array $wrappers
 ```
 
-The wrapper definitions of `DefaultFormRenderer` (see the [Nette documentation](https://doc.nette.org/en/forms/rendering#toc-renderer)). Change them on the instance:
+The wrapper definitions of `DefaultFormRenderer` (see the [Nette documentation](https://doc.nette.org/en/forms/rendering)). Every key with its meaning is in the [configuration reference](/guide/configuration). Change them on the instance:
 
 ```php
 use Tomaj\Form\Renderer\BootstrapRenderer;
@@ -90,3 +93,7 @@ They differ in these keys:
 | `label.container` | `div class="col-sm-3 control-label"` | `''` | `''` |
 
 `null` and `''` both mean "no wrapper element".
+
+## Inherited methods
+
+The renderers inherit the public methods of `DefaultFormRenderer`, which `render()` calls for each part: `renderBegin()`, `renderEnd()`, `renderErrors(?Control $control = null, bool $own = true)`, `renderBody()`, `renderControls(Container|ControlGroup $parent)`, `renderPair(Control $control)`, `renderPairMulti(array $controls)`, `renderLabel(Control $control)`, `renderControl(Control $control)` and `getWrapper(string $name)`. They work on the form of the last `render()` call, and only `render()` adds the Bootstrap classes, so call `render($form, $mode)` with a mode instead of calling them directly.

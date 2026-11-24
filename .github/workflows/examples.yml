@@ -1,0 +1,66 @@
+name: Examples
+
+# Runs every example in examples/ against the code of the push or pull request (a Composer path
+# repository, see examples/ci/use-local-bootstrap-form.sh) and compares what it prints with its
+# expected-output.txt. The docs previews are built from the same files.
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+permissions:
+  contents: read
+
+# a new push to a pull request cancels its older run
+concurrency:
+  group: examples-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  examples:
+    name: Example ${{ matrix.example }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        example: [layouts, all-controls, inline-filter, validation-errors, checkout-groups, button-styles, custom-wrappers, manual-rendering]
+
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        persist-credentials: false
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@e8d43d139fbfbe401c32ef3a3a32e14075f20122 # main after 2.40.0 (PHP 8.6 stable)
+      with:
+        php-version: '8.4'
+        extensions: mbstring, xml
+        coverage: none
+
+    - name: Run examples/${{ matrix.example }} and compare the output
+      env:
+        EXAMPLE: ${{ matrix.example }}
+      run: examples/ci/example.sh "$EXAMPLE"
+
+  listed:
+    name: Examples listed
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        persist-credentials: false
+
+    - name: Every example is in the matrix and has a docs page
+      run: |
+        status=0
+        for dir in examples/*/; do
+          name="$(basename "$dir")"
+          [ "$name" = ci ] && continue
+          grep -q "\b$name\b" .github/workflows/examples.yml || { echo "::error::examples/$name is not in the Examples matrix"; status=1; }
+          [ -f "docs/examples/$name.md" ] || { echo "::error::docs/examples/$name.md is missing"; status=1; }
+          [ -f "$dir/expected-output.txt" ] || { echo "::error::examples/$name/expected-output.txt is missing"; status=1; }
+        done
+        exit "$status"

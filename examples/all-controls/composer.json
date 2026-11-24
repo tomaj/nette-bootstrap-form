@@ -1,0 +1,15 @@
+{
+    "name": "tomaj/nette-bootstrap-form-example-all-controls",
+    "description": "Every nette/forms control type rendered by BootstrapRenderer",
+    "license": "LGPL-2.0-or-later",
+    "type": "project",
+    "require": {
+        "php": "^8.4",
+        "tomaj/nette-bootstrap-form": "dev-master"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    }
+}

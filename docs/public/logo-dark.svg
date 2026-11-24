@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Nette Bootstrap Form">
+  <defs><linearGradient id="nbf-mark" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#9b6ff0"/><stop offset="1" stop-color="#6a3fcf"/>
+  </linearGradient></defs>
+  <rect width="64" height="64" rx="15" fill="url(#nbf-mark)"/>
+  <rect x="12" y="14" width="40" height="9" rx="2.5" fill="#ffffff"/>
+  <rect x="12" y="28" width="40" height="9" rx="2.5" fill="#ffffff" fill-opacity="0.92"/>
+  <rect x="12" y="42" width="20" height="9" rx="4.5" fill="#f7b84b"/>
+</svg>

@@ -3,21 +3,28 @@
   "version": "1.0.0",
   "description": "Documentation for tomaj/nette-bootstrap-form",
   "private": true,
+  "type": "module",
   "engines": {
     "node": ">=22"
   },
   "scripts": {
-    "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build",
+    "previews": "node scripts/previews.mjs",
+    "docs:dev": "node scripts/previews.mjs && vitepress dev",
+    "docs:build": "node scripts/previews.mjs && vitepress build",
     "docs:preview": "vitepress preview",
-    "docs:links": "bash scripts/check-links.sh"
+    "docs:links": "bash scripts/check-links.sh",
+    "brand": "node scripts/brand-svg.mjs && node scripts/brand-png.mjs",
+    "check:svg": "python3 scripts/check-svg.py"
   },
   "license": "LGPL-2.0-or-later",
   "devDependencies": {
     "linkinator": "8.1.0",
+    "puppeteer-core": "25.16.0",
     "vitepress": "1.6.4"
   },
   "overrides": {
-    "vite": "^6.4.5"
+    "vite": "^6.4.5",
+    "glob": "^14.0.6",
+    "minimatch": "^11.0.9"
   }
 }

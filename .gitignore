@@ -8,3 +8,5 @@ docs/.vitepress/dist/
 docs/.vitepress/cache/
 .idea/
 .DS_Store
+docs/public/previews/
+examples/*/vendor/

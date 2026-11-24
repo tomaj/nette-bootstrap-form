@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 230" width="760" height="230" role="img" aria-label="Rendering flow: your Nette Form goes to the Bootstrap renderer's render method, which adds Bootstrap classes to the form and its controls, then Nette's DefaultFormRenderer wraps every pair using the renderer's wrappers array and returns the HTML.">
+  <defs><marker id="flow-1b1726" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#9f7aea"/></marker></defs>
+  <rect x="1" y="1" width="758" height="228" rx="14" fill="#221d31" stroke="#3d3456" stroke-width="1.5"/>
+  <rect x="20" y="40" width="200" height="150" rx="12" fill="#1b1726" stroke="#9f7aea" stroke-width="2"/>
+  <text x="120" y="72" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#ece6fa">Your form</text>
+  <text x="120" y="102" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a89fc2">Nette\Forms\Form</text>
+  <text x="120" y="124" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a89fc2">controls, rules,</text>
+  <text x="120" y="146" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a89fc2">groups, errors</text>
+  <path d="M222 115 h36" stroke="#9f7aea" stroke-width="2.5" marker-end="url(#flow-1b1726)"/>
+  <rect x="280" y="40" width="200" height="150" rx="12" fill="#2c2441" stroke="#9f7aea" stroke-width="2"/>
+  <text x="380" y="72" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#ece6fa">1. Decorate</text>
+  <text x="380" y="102" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a89fc2">form-horizontal</text>
+  <text x="380" y="124" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a89fc2">novalidate</text>
+  <text x="380" y="146" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a89fc2">form-control · btn</text>
+  <text x="380" y="168" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a89fc2">div.checkbox · div.radio</text>
+  <path d="M482 115 h36" stroke="#9f7aea" stroke-width="2.5" marker-end="url(#flow-1b1726)"/>
+  <rect x="540" y="40" width="200" height="150" rx="12" fill="#2c2441" stroke="#9f7aea" stroke-width="2"/>
+  <text x="640" y="72" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#ece6fa">2. Render</text>
+  <text x="640" y="102" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a89fc2">DefaultFormRenderer</text>
+  <text x="640" y="124" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a89fc2">with $wrappers</text>
+  <text x="640" y="146" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#a89fc2">→ Bootstrap HTML</text>
+  <text x="380" y="216" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#a89fc2">both steps run inside BootstrapRenderer::render(), on every echo $form or {control form}</text>
+</svg>
