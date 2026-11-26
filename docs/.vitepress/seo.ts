@@ -148,7 +148,7 @@ export function seoHead(page: PageData, srcDir: string, siteDescription: string)
       runtimePlatform: 'PHP 8.4+',
       applicationCategory: 'DeveloperApplication',
       operatingSystem: 'Linux, macOS, Windows',
-      license: 'https://spdx.org/licenses/LGPL-2.0-or-later.html',
+      license: 'https://opensource.org/licenses/MIT',
       softwareVersion: '3.x',
       author: { '@id': person['@id'] },
       image: [{ '@id': logo['@id'] }, image],

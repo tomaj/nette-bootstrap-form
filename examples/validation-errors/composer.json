@@ -1,7 +1,7 @@
 {
     "name": "tomaj/nette-bootstrap-form-example-validation-errors",
     "description": "A submitted registration form with validation errors",
-    "license": "LGPL-2.0-or-later",
+    "license": "MIT",
     "type": "project",
     "require": {
         "php": "^8.4",

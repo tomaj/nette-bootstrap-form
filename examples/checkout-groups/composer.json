@@ -1,7 +1,7 @@
 {
     "name": "tomaj/nette-bootstrap-form-example-checkout-groups",
     "description": "A checkout form split into fieldsets with descriptions",
-    "license": "LGPL-2.0-or-later",
+    "license": "MIT",
     "type": "project",
     "require": {
         "php": "^8.4",

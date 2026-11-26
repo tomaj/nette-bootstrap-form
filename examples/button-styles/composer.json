@@ -1,7 +1,7 @@
 {
     "name": "tomaj/nette-bootstrap-form-example-button-styles",
     "description": "Which Bootstrap classes the renderers give to buttons",
-    "license": "LGPL-2.0-or-later",
+    "license": "MIT",
     "type": "project",
     "require": {
         "php": "^8.4",

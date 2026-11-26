@@ -19,7 +19,7 @@
 [![PHPStan](https://img.shields.io/badge/PHPStan-level%20max-brightgreen.svg)](https://phpstan.org/)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/tomaj/nette-bootstrap-form/badge)](https://scorecard.dev/viewer/?uri=github.com/tomaj/nette-bootstrap-form)
 [![Documentation](https://img.shields.io/badge/docs-3.x-4f46e5.svg)](https://tomaj.github.io/nette-bootstrap-form/)
-[![License](https://img.shields.io/packagist/l/tomaj/nette-bootstrap-form.svg)](https://packagist.org/packages/tomaj/nette-bootstrap-form)
+[![License](https://img.shields.io/github/license/tomaj/nette-bootstrap-form.svg)](LICENSE)
 [![PHP Version](https://img.shields.io/packagist/dependency-v/tomaj/nette-bootstrap-form/php.svg)](https://packagist.org/packages/tomaj/nette-bootstrap-form)
 
 ## What is Nette Bootstrap Form?
@@ -71,4 +71,4 @@ Report vulnerabilities in private, as described in [SECURITY.md](SECURITY.md). D
 
 ## License
 
-nette-bootstrap-form is licensed under the GNU Lesser General Public License, version 2.0 or later (`LGPL-2.0-or-later`, as declared in `composer.json`).
+The MIT License (MIT). Please see [License File](LICENSE) for more information. Versions up to 2.x were released under LGPL-2.0-or-later.

@@ -51,4 +51,4 @@ npm run docs:links
 
 Maintainers publish releases by pushing a version tag; see [RELEASING.md](RELEASING.md).
 
-By contributing, you agree that your contributions are licensed under the license of this package as declared in `composer.json` (currently LGPL-2.0-or-later).
+By contributing, you agree that your contributions are licensed under the MIT License.
