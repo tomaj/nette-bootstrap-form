@@ -66,3 +66,7 @@ npm run check:svg                             # every SVG is well-formed XML
 ## Releases
 
 Maintainers publish releases by pushing a version tag, as described in [RELEASING.md](https://github.com/tomaj/nette-bootstrap-form/blob/master/RELEASING.md).
+
+## License
+
+The package is released under the [MIT License](https://github.com/tomaj/nette-bootstrap-form/blob/master/LICENSE) (versions up to 2.x under LGPL-2.0-or-later). By contributing, you agree that your contributions are licensed under the MIT License.

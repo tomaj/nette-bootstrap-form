@@ -1,7 +1,7 @@
 {
     "name": "tomaj/nette-bootstrap-form",
     "description": "Bootstrap renderers (horizontal, vertical, inline) for Nette Forms.",
-    "license": "LGPL-2.0-or-later",
+    "license": "MIT",
     "type": "library",
     "keywords": [
         "nette",

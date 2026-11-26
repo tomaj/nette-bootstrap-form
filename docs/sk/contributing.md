@@ -66,3 +66,7 @@ npm run check:svg                             # every SVG is well-formed XML
 ## Vydania {#releases}
 
 Správcovia vydávajú nové verzie pushnutím tagu verzie, ako opisuje [RELEASING.md](https://github.com/tomaj/nette-bootstrap-form/blob/master/RELEASING.md).
+
+## Licencia {#license}
+
+Balík je vydaný pod [licenciou MIT](https://github.com/tomaj/nette-bootstrap-form/blob/master/LICENSE) (verzie do 2.x pod LGPL-2.0-or-later). Prispením súhlasíte, že vaše príspevky sú licencované pod licenciou MIT.

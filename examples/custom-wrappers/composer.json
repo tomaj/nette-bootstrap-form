@@ -1,7 +1,7 @@
 {
     "name": "tomaj/nette-bootstrap-form-example-custom-wrappers",
     "description": "A wider label column, a col-md grid and browser validation, configured on the renderer instance",
-    "license": "LGPL-2.0-or-later",
+    "license": "MIT",
     "type": "project",
     "require": {
         "php": "^8.4",

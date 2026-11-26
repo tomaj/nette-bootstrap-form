@@ -1,7 +1,7 @@
 {
     "name": "tomaj/nette-bootstrap-form-example-manual-rendering",
     "description": "A form rendered part by part inside a Bootstrap panel, with a decorating renderer",
-    "license": "LGPL-2.0-or-later",
+    "license": "MIT",
     "type": "project",
     "require": {
         "php": "^8.4",

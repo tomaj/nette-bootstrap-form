@@ -17,7 +17,7 @@
     "check:svg": "python3 scripts/check-svg.py",
     "check:locales": "python3 scripts/check-locales.py"
   },
-  "license": "LGPL-2.0-or-later",
+  "license": "MIT",
   "devDependencies": {
     "linkinator": "8.1.0",
     "puppeteer-core": "25.16.0",
