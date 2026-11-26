@@ -7,6 +7,7 @@ namespace Tomaj\Form\Renderer;
 use Nette\Forms\Controls\Button;
 use Nette\Forms\Controls\Checkbox;
 use Nette\Forms\Controls\CheckboxList;
+use Nette\Forms\Controls\DateTimeControl;
 use Nette\Forms\Controls\MultiSelectBox;
 use Nette\Forms\Controls\RadioList;
 use Nette\Forms\Controls\SelectBox;
@@ -42,8 +43,12 @@ trait DecoratesControls
                     $usedPrimary = true;
                 }
             } elseif ($control instanceof TextBase
+                || $control instanceof DateTimeControl
                 || $control instanceof SelectBox
                 || $control instanceof MultiSelectBox) {
+                // ColorPicker gets nothing on purpose: Bootstrap 3 has no style for colour inputs, and
+                // form-control would stretch the swatch to a full-width text box (Bootstrap 5 adds
+                // form-control-color for it)
                 $control->getControlPrototype()->addClass('form-control');
             } elseif ($control instanceof Checkbox) {
                 $control->getContainerPrototype()->setName('div')->addClass($control->getControlPrototype()->type);

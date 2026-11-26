@@ -1,6 +1,6 @@
 # Upgrading from 2.x to 3.0
 
-3.0 keeps the rendered HTML of 2.x byte for byte: a form rendered by a 3.0 renderer has the same markup as with 2.1.1. The breaking changes are about the platform and the classes themselves.
+3.0 keeps the rendered HTML of 2.x byte for byte, with one exception: date and time inputs get `form-control` (below). Every other control has the same markup as with 2.1.1. The other breaking changes are about the platform and the classes themselves.
 
 ## PHP 8.4 or newer
 
@@ -26,7 +26,7 @@ After:
 
 ## The renderers are final
 
-`BootstrapRenderer`, `BootstrapVerticalRenderer` and `BootstrapInlineRenderer` are `final`, so they can no longer be extended. The usual reason to subclass was to change `$wrappers`; set them on the instance instead. The HTML that 3.0 renders for a given `$wrappers` configuration is the same as in 2.x.
+`BootstrapRenderer`, `BootstrapVerticalRenderer` and `BootstrapInlineRenderer` are `final`, so they can no longer be extended. The usual reason to subclass was to change `$wrappers`; set them on the instance instead. The HTML that 3.0 renders for a given `$wrappers` configuration is the same as in 2.x (apart from the date and time inputs below).
 
 Before:
 
@@ -85,3 +85,21 @@ final class MyRenderer implements FormRenderer
 ```
 
 Note that `Nette\Forms\FormRenderer::render()` takes only the form; `Form::render()` and `echo $form` call it that way. Call `$this->inner->render($form, 'begin')` and so on directly when you render a form part by part.
+
+## Date and time inputs get `form-control`
+
+`addDate()`, `addTime()` and `addDateTime()` (`Nette\Forms\Controls\DateTimeControl`) now get the `form-control` class in all three renderers, so Bootstrap 3 styles them like the text inputs ([#33](https://github.com/tomaj/nette-bootstrap-form/issues/33)). This is the only change in the rendered HTML.
+
+Before (2.x):
+
+```html
+<input type="date" name="from" id="frm-from">
+```
+
+After (3.0):
+
+```html
+<input type="date" name="from" class="form-control" id="frm-from">
+```
+
+If you added the class yourself (`->setHtmlAttribute('class', 'form-control')`), you can remove that call; keeping it does no harm, the class is not added twice. If you relied on the browser's narrow default look, set the width in your CSS or render the input manually. Update any HTML snapshots of forms with these inputs. `addColor()` is unchanged: it still gets no class, because Bootstrap 3 has no style for colour inputs.

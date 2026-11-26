@@ -11,7 +11,8 @@ use Tomaj\Form\Renderer\BootstrapRenderer;
 $form = new Form('profile');
 $form->setAction('/profile');
 
-// text inputs: all of them get form-control
+// text, number, date and time inputs get form-control; the colour picker does not, because
+// Bootstrap 3 has no style for colour inputs
 $form->addText('name', 'Name')->setHtmlAttribute('placeholder', 'Jane Doe');
 $form->addPassword('password', 'Password');
 $form->addEmail('email', 'E-mail');

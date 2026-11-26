@@ -1,6 +1,6 @@
 ---
 title: FAQ
-description: 'Frequently asked questions about nette-bootstrap-form, Bootstrap 4 and 5, Latte, date inputs, buttons, errors, novalidate and subclassing the renderers.'
+description: 'Frequently asked questions about nette-bootstrap-form, Bootstrap 4 and 5, Latte, colour inputs, buttons, errors, novalidate and subclassing the renderers.'
 ---
 
 # FAQ
@@ -13,9 +13,9 @@ No. The renderers output [Bootstrap 3](https://getbootstrap.com/docs/3.4/css/#fo
 
 3.2 and newer 3.x versions (`"nette/forms": "^3.2"`), on PHP 8.4 or newer. CI runs the tests with the lowest and the latest allowed versions.
 
-## Why does my date input not look like the other inputs?
+## Why does my colour input not look like the other inputs?
 
-`addDate()`, `addTime()`, `addDateTime()` and `addColor()` create controls that are not text inputs in nette/forms, and the renderers add `form-control` only to text inputs, text areas and selects. Add the class yourself with `->setHtmlAttribute('class', 'form-control')`; see [Controls](/guide/controls#date-time-and-colour-inputs) and [#33](https://github.com/tomaj/nette-bootstrap-form/issues/33).
+The renderers add no class to `addColor()`, because Bootstrap 3 has no style for colour inputs and `form-control` would stretch the swatch to a full-width box. Date and time inputs (`addDate()`, `addTime()`, `addDateTime()`) get `form-control` since 3.0; in 2.x they got nothing. See [Controls](/guide/controls#date-time-and-colour-inputs).
 
 ## Why is my button not blue?
 

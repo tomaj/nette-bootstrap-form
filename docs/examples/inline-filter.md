@@ -17,7 +17,7 @@ From Bootstrap's `sm` breakpoint (768 px) the `form-group`s are `inline-block` a
 
 `Clear` has `setValidationScope([])`, so it submits the form without validating it; nette/forms adds `formnovalidate` to it. Avoid naming a button `reset` or `submit`: those names collide with properties of the `<form>` element in the browser, and nette/forms renames them (to `_reset`).
 
-The date input has no `form-control` ([#33](https://github.com/tomaj/nette-bootstrap-form/issues/33)); add it with `->setHtmlAttribute('class', 'form-control')` if you want it styled like the others.
+The date input gets `form-control` like the other inputs (since 3.0, [#33](https://github.com/tomaj/nette-bootstrap-form/issues/33)).
 
 ## Output
 

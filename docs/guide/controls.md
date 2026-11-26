@@ -22,8 +22,8 @@ Before a form is rendered, the renderer walks through all its controls (also tho
 | `addCheckboxList()` | `CheckboxList` | one `<label>` per item | each item in `<div class="checkbox">` |
 | `addRadioList()` | `RadioList` | one `<label>` per item | each item in `<div class="radio">` |
 | `addUpload()`, `addMultiUpload()` | `UploadControl` | `<input type="file">` | nothing (+ `text` from `$wrappers`); Bootstrap 3 styles file inputs without `form-control` |
-| `addDate()`, `addTime()`, `addDateTime()` | `DateTimeControl` | `<input type="date">` … | **nothing**, see [Date, time and colour inputs](#date-time-and-colour-inputs) |
-| `addColor()` | `ColorPicker` | `<input type="color">` | nothing |
+| `addDate()`, `addTime()`, `addDateTime()` | `DateTimeControl` | `<input type="date">` … | `form-control` (since 3.0), see [Date, time and colour inputs](#date-time-and-colour-inputs) |
+| `addColor()` | `ColorPicker` | `<input type="color">` | nothing, see [Date, time and colour inputs](#date-time-and-colour-inputs) |
 | `addHidden()` | `HiddenField` | `<input type="hidden">` | nothing; rendered in a `<div>` before `</form>` |
 | `addSubmit()` | `SubmitButton` | `<input type="submit">` | `btn btn-primary` or `btn btn-default`, see [Buttons](#buttons) (+ `button`) |
 | `addButton()` | `Button` | `<input type="button">` | as submit (+ `button`) |
@@ -130,14 +130,17 @@ Things to know about the check:
 
 ## Date, time and colour inputs
 
-`addDate()`, `addTime()`, `addDateTime()` and `addColor()` (nette/forms 3.2+) are not text inputs in nette/forms (they extend `BaseControl`), and the renderers do not add `form-control` to them, so they keep the browser's default look. Add the class yourself until this changes ([#33](https://github.com/tomaj/nette-bootstrap-form/issues/33)):
+`addDate()`, `addTime()` and `addDateTime()` (nette/forms 3.2+, class `DateTimeControl`) get `form-control` like the text inputs, so Bootstrap 3 gives them the same look and full width (it styles `input[type=date]`, `[type=time]` and `[type=datetime-local]` with `form-control`). 2.x added nothing to them; this is the one change in the rendered HTML between 2.x and 3.0 ([#33](https://github.com/tomaj/nette-bootstrap-form/issues/33), see [Upgrading to 3.0](/upgrade)).
+
+`addColor()` (`ColorPicker`) gets no class on purpose. Bootstrap 3 (and 4) have no style for colour inputs: `form-control` would stretch the colour swatch into a full-width, text-box-sized bar. Bootstrap 5 has `form-control form-control-color` for it, so a renderer for Bootstrap 5 would add that. With your own CSS, set a class yourself with `->setHtmlAttribute('class', '…')`.
 
 ```php
 use Nette\Forms\Form;
 use Tomaj\Form\Renderer\BootstrapVerticalRenderer;
 
 $form = new Form();
-$form->addDate('from', 'From')->setHtmlAttribute('class', 'form-control');
+$form->addDate('from', 'From');
+$form->addColor('colour', 'Colour')->setDefaultValue('#7952b3');
 
 echo new BootstrapVerticalRenderer()->render($form, 'body');
 ```
@@ -147,6 +150,10 @@ echo new BootstrapVerticalRenderer()->render($form, 'body');
 <div class="form-group">
 	<label for="frm-from">From</label>
 	<input type="date" name="from" class="form-control" id="frm-from">
+</div>
+<div class="form-group">
+	<label for="frm-colour">Colour</label>
+	<input type="color" name="colour" id="frm-colour" value="#7952b3">
 </div>
 ```
 

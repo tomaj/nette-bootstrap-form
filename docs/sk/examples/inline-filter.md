@@ -17,7 +17,7 @@ Od breakpointu `sm` Bootstrapu (768 px) sú `form-group` nastavené na `inline-b
 
 `Clear` má `setValidationScope([])`, takže odošle formulár bez validácie; nette/forms mu pridá `formnovalidate`. Tlačidlo nepomenúvajte `reset` ani `submit`: tieto názvy kolidujú s vlastnosťami elementu `<form>` v prehliadači a nette/forms ich premenuje (na `_reset`).
 
-Vstup pre dátum nemá `form-control` ([#33](https://github.com/tomaj/nette-bootstrap-form/issues/33)); ak ho chcete naštýlovať ako ostatné, pridajte ho cez `->setHtmlAttribute('class', 'form-control')`.
+Vstup pre dátum dostane `form-control` ako ostatné polia (od 3.0, [#33](https://github.com/tomaj/nette-bootstrap-form/issues/33)).
 
 ## Výstup {#output}
 
