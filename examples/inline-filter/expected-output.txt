@@ -16,7 +16,7 @@
 <div class="form-group">
 	<label for="frm-filter-from">From</label>
 
-	<input type="date" name="from" id="frm-filter-from">
+	<input type="date" name="from" class="form-control" id="frm-filter-from">
 </div>
 
 <div class="form-group">

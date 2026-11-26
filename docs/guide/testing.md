@@ -27,7 +27,7 @@ final class SignInFormTest extends TestCase
 }
 ```
 
-This package tests itself the same way: `tests/RendererTest.php` renders 22 forms with each renderer and compares them byte for byte with `tests/fixtures/<renderer>/<case>.html`, and the [examples](/examples/) compare their output with `expected-output.txt` in CI.
+This package tests itself the same way: `tests/RendererTest.php` renders 23 forms with each renderer and compares them byte for byte with `tests/fixtures/<renderer>/<case>.html`, and the [examples](/examples/) compare their output with `expected-output.txt` in CI.
 
 Some attributes depend on the environment: an upload control gets its size limit from `upload_max_filesize` and its count limit from `max_file_uploads` in `php.ini`. Set your own limits (see [`examples/all-controls`](/examples/all-controls)), or the snapshot differs between your machine and CI.
 

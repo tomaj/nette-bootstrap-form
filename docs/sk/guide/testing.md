@@ -27,7 +27,7 @@ final class SignInFormTest extends TestCase
 }
 ```
 
-Tento balík sa testuje rovnako: `tests/RendererTest.php` vykreslí 22 formulárov každým vykresľovačom a porovná ich bajt po bajte s `tests/fixtures/<renderer>/<case>.html` a [príklady](/sk/examples/) porovnávajú v CI svoj výstup s `expected-output.txt`.
+Tento balík sa testuje rovnako: `tests/RendererTest.php` vykreslí 23 formulárov každým vykresľovačom a porovná ich bajt po bajte s `tests/fixtures/<renderer>/<case>.html` a [príklady](/sk/examples/) porovnávajú v CI svoj výstup s `expected-output.txt`.
 
 Niektoré atribúty závisia od prostredia: prvok na nahrávanie súborov berie limit veľkosti z `upload_max_filesize` a limit počtu z `max_file_uploads` v `php.ini`. Nastavte si vlastné limity (pozrite [`examples/all-controls`](/sk/examples/all-controls)), inak sa snapshot na vašom počítači a v CI bude líšiť.
 

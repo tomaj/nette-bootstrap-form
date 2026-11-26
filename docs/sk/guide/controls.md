@@ -22,8 +22,8 @@ Pred vykreslením formulára prejde vykresľovač všetky jeho prvky (aj tie v [
 | `addCheckboxList()` | `CheckboxList` | jeden `<label>` na položku | každú položku do `<div class="checkbox">` |
 | `addRadioList()` | `RadioList` | jeden `<label>` na položku | každú položku do `<div class="radio">` |
 | `addUpload()`, `addMultiUpload()` | `UploadControl` | `<input type="file">` | nič (+ `text` z `$wrappers`); Bootstrap 3 štýluje polia na súbory bez `form-control` |
-| `addDate()`, `addTime()`, `addDateTime()` | `DateTimeControl` | `<input type="date">` … | **nič**, pozrite [Polia na dátum, čas a farbu](#date-time-and-colour-inputs) |
-| `addColor()` | `ColorPicker` | `<input type="color">` | nič |
+| `addDate()`, `addTime()`, `addDateTime()` | `DateTimeControl` | `<input type="date">` … | `form-control` (od 3.0), pozrite [Polia na dátum, čas a farbu](#date-time-and-colour-inputs) |
+| `addColor()` | `ColorPicker` | `<input type="color">` | nič, pozrite [Polia na dátum, čas a farbu](#date-time-and-colour-inputs) |
 | `addHidden()` | `HiddenField` | `<input type="hidden">` | nič; vykreslí sa v `<div>` pred `</form>` |
 | `addSubmit()` | `SubmitButton` | `<input type="submit">` | `btn btn-primary` alebo `btn btn-default`, pozrite [Tlačidlá](#buttons) (+ `button`) |
 | `addButton()` | `Button` | `<input type="button">` | ako odosielacie tlačidlo (+ `button`) |
@@ -130,14 +130,17 @@ echo $renderer->render($form, 'body');
 
 ## Polia na dátum, čas a farbu {#date-time-and-colour-inputs}
 
-`addDate()`, `addTime()`, `addDateTime()` a `addColor()` (nette/forms 3.2+) nie sú v nette/forms textové polia (dedia z `BaseControl`) a vykresľovače im `form-control` nepridávajú, takže si ponechajú predvolený vzhľad prehliadača. Kým sa to nezmení ([#33](https://github.com/tomaj/nette-bootstrap-form/issues/33)), pridajte triedu sami:
+`addDate()`, `addTime()` a `addDateTime()` (nette/forms 3.2+, trieda `DateTimeControl`) dostanú `form-control` rovnako ako textové polia, takže im Bootstrap 3 dá rovnaký vzhľad a plnú šírku (polia `input[type=date]`, `[type=time]` a `[type=datetime-local]` s `form-control` štýluje). 2.x im nepridávala nič; je to jediná zmena vo vykreslenom HTML medzi 2.x a 3.0 ([#33](https://github.com/tomaj/nette-bootstrap-form/issues/33), pozrite [Prechod na 3.0](/sk/upgrade)).
+
+`addColor()` (`ColorPicker`) zámerne nedostane žiadnu triedu. Bootstrap 3 (ani 4) nemá štýl pre výber farby: `form-control` by farebnú vzorku roztiahol na pruh s rozmermi textového poľa cez celú šírku. Bootstrap 5 naň má `form-control form-control-color`, takže vykresľovač pre Bootstrap 5 by pridal tú. Ak máte vlastné CSS, nastavte triedu sami cez `->setHtmlAttribute('class', '…')`.
 
 ```php
 use Nette\Forms\Form;
 use Tomaj\Form\Renderer\BootstrapVerticalRenderer;
 
 $form = new Form();
-$form->addDate('from', 'From')->setHtmlAttribute('class', 'form-control');
+$form->addDate('from', 'From');
+$form->addColor('colour', 'Colour')->setDefaultValue('#7952b3');
 
 echo new BootstrapVerticalRenderer()->render($form, 'body');
 ```
@@ -147,6 +150,10 @@ echo new BootstrapVerticalRenderer()->render($form, 'body');
 <div class="form-group">
 	<label for="frm-from">From</label>
 	<input type="date" name="from" class="form-control" id="frm-from">
+</div>
+<div class="form-group">
+	<label for="frm-colour">Colour</label>
+	<input type="color" name="colour" id="frm-colour" value="#7952b3">
 </div>
 ```
 

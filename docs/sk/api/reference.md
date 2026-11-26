@@ -41,9 +41,9 @@ Pridá triedy Bootstrapu formuláru a jeho prvkom a potom ho vykreslí cez `Defa
 Čo sa mení na ktorom prvku (podrobnosti v [Prvky formulára](/sk/guide/controls)):
 
 - `<form>`: trieda formulára (pozrite tabuľku vyššie), `novalidate="novalidate"`, ak nie je vypnuté
-- prvky `TextBase` (text, heslo, textová oblasť, …), `SelectBox`, `MultiSelectBox`: `form-control`
+- prvky `TextBase` (text, heslo, textová oblasť, …), `DateTimeControl` (dátum, čas, dátum s časom), `SelectBox`, `MultiSelectBox`: `form-control`
 - prvky `Button` (submit, button, image): `btn btn-primary` pre prvé tlačidlo bez triedy `btn`, `btn btn-default` pre ďalšie; tlačidlá, ktorých trieda obsahuje `btn`, zostanú bez zmeny
-- `DateTimeControl`, `ColorPicker`, `UploadControl`, `HiddenField`: nič
+- `ColorPicker`, `UploadControl`, `HiddenField`: nič
 - `Checkbox`: obalený do `<div class="checkbox">`
 - `CheckboxList`, `RadioList`: každá položka obalená do `<div class="checkbox">` / `<div class="radio">`
 

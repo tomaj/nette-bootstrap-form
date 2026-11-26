@@ -1,6 +1,6 @@
 ---
 title: Časté otázky
-description: 'Časté otázky o nette-bootstrap-form: Bootstrap 4 a 5, Latte, polia s dátumom, tlačidlá, chyby, novalidate a dedenie od vykresľovačov.'
+description: 'Časté otázky o nette-bootstrap-form: Bootstrap 4 a 5, Latte, výber farby, tlačidlá, chyby, novalidate a dedenie od vykresľovačov.'
 ---
 
 # Časté otázky {#faq}
@@ -13,9 +13,9 @@ Nie. Vykresľovače generujú markup pre [Bootstrap 3](https://getbootstrap.com/
 
 3.2 a novšie verzie 3.x (`"nette/forms": "^3.2"`) na PHP 8.4 alebo novšom. CI spúšťa testy s najnižšími aj najnovšími povolenými verziami.
 
-## Prečo moje pole s dátumom nevyzerá ako ostatné vstupné polia? {#why-does-my-date-input-not-look-like-the-other-inputs}
+## Prečo môj výber farby nevyzerá ako ostatné vstupné polia? {#why-does-my-colour-input-not-look-like-the-other-inputs}
 
-`addDate()`, `addTime()`, `addDateTime()` a `addColor()` vytvárajú prvky, ktoré v nette/forms nie sú textové vstupy, a vykresľovače pridávajú `form-control` len textovým vstupom, textovým oblastiam a výberovým poliam. Triedu pridajte sami cez `->setHtmlAttribute('class', 'form-control')`; pozrite [Prvky formulára](/sk/guide/controls#date-time-and-colour-inputs) a [#33](https://github.com/tomaj/nette-bootstrap-form/issues/33).
+Vykresľovače prvku `addColor()` nepridávajú žiadnu triedu, pretože Bootstrap 3 nemá štýl pre výber farby a `form-control` by farebnú vzorku roztiahol na pole cez celú šírku. Polia na dátum a čas (`addDate()`, `addTime()`, `addDateTime()`) dostávajú `form-control` od 3.0; v 2.x nedostávali nič. Pozrite [Prvky formulára](/sk/guide/controls#date-time-and-colour-inputs).
 
 ## Prečo moje tlačidlo nie je modré? {#why-is-my-button-not-blue}
 

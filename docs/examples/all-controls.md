@@ -15,8 +15,8 @@ A profile form with one control of every type that nette/forms has, rendered by 
 
 What to look for:
 
-- Text, password, e-mail, number inputs, the text area and both selects have `form-control`.
-- The date, time, date-time and colour inputs do **not** (they are not text inputs in nette/forms), so they keep the browser's look; see [#33](https://github.com/tomaj/nette-bootstrap-form/issues/33) and the [workaround](/guide/controls#date-time-and-colour-inputs).
+- Text, password, e-mail, number, date, time and date-time inputs, the text area and both selects have `form-control`.
+- The colour input does **not**: Bootstrap 3 has no style for it, so it keeps the browser's look; see [Date, time and colour inputs](/guide/controls#date-time-and-colour-inputs).
 - The checkbox is wrapped in `div.checkbox`, each item of the checkbox list in `div.checkbox` and each radio in `div.radio`.
 - The file inputs have only the `text` class from `$wrappers`. Their size and count limits are set explicitly, because the defaults come from `php.ini` and would differ between machines.
 - The three buttons share one `form-group`: the submit button is `btn-primary`, the button and the image button `btn-default`.

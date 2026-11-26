@@ -41,9 +41,9 @@ Adds the Bootstrap classes to the form and its controls, then renders it with `D
 What changes on which control (details in [Controls](/guide/controls)):
 
 - `<form>`: the form class (see the table above), `novalidate="novalidate"` unless disabled
-- `TextBase` controls (text, password, text area, …), `SelectBox`, `MultiSelectBox`: `form-control`
+- `TextBase` controls (text, password, text area, …), `DateTimeControl` (date, time, date-time), `SelectBox`, `MultiSelectBox`: `form-control`
 - `Button` controls (submit, button, image): `btn btn-primary` for the first one without a `btn` class, `btn btn-default` for the following ones; buttons whose class contains `btn` are untouched
-- `DateTimeControl`, `ColorPicker`, `UploadControl`, `HiddenField`: nothing
+- `ColorPicker`, `UploadControl`, `HiddenField`: nothing
 - `Checkbox`: wrapped in `<div class="checkbox">`
 - `CheckboxList`, `RadioList`: each item wrapped in `<div class="checkbox">` / `<div class="radio">`
 

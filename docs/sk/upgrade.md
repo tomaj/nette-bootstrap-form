@@ -1,11 +1,11 @@
 ---
 title: Prechod na 3.0
-description: 'Ako prejsť z nette-bootstrap-form 2.x na 3.0, PHP 8.4 a finálne triedy vykresľovačov; vykreslené HTML zostáva rovnaké.'
+description: 'Ako prejsť z nette-bootstrap-form 2.x na 3.0, PHP 8.4, finálne triedy vykresľovačov a form-control na poliach s dátumom a časom; zvyšok vykresleného HTML zostáva rovnaký.'
 ---
 
 # Prechod z 2.x na 3.0 {#upgrading-from-2-x-to-3-0}
 
-3.0 zachováva vykreslené HTML z 2.x bajt po bajte: formulár vykreslený vykresľovačom z 3.0 má rovnaký markup ako s 2.1.1. Nekompatibilné zmeny sa týkajú platformy a samotných tried.
+3.0 zachováva vykreslené HTML z 2.x bajt po bajte s jednou výnimkou: polia na dátum a čas dostanú `form-control` (nižšie). Všetky ostatné prvky majú rovnaký markup ako s 2.1.1. Ostatné nekompatibilné zmeny sa týkajú platformy a samotných tried.
 
 ## PHP 8.4 alebo novšie {#php-8-4-or-newer}
 
@@ -31,7 +31,7 @@ Potom:
 
 ## Vykresľovače sú finálne {#the-renderers-are-final}
 
-`BootstrapRenderer`, `BootstrapVerticalRenderer` a `BootstrapInlineRenderer` sú `final`, takže sa už nedajú rozšíriť dedením. Obvyklým dôvodom na podtriedu bola zmena `$wrappers`; nastavte ich namiesto toho na inštancii. HTML, ktoré 3.0 vykreslí pre danú konfiguráciu `$wrappers`, je rovnaké ako v 2.x.
+`BootstrapRenderer`, `BootstrapVerticalRenderer` a `BootstrapInlineRenderer` sú `final`, takže sa už nedajú rozšíriť dedením. Obvyklým dôvodom na podtriedu bola zmena `$wrappers`; nastavte ich namiesto toho na inštancii. HTML, ktoré 3.0 vykreslí pre danú konfiguráciu `$wrappers`, je rovnaké ako v 2.x (okrem polí na dátum a čas nižšie).
 
 Predtým:
 
@@ -91,9 +91,27 @@ final class MyRenderer implements FormRenderer
 
 Pozor, `Nette\Forms\FormRenderer::render()` prijíma len formulár; `Form::render()` a `echo $form` ho tak aj volajú. Keď formulár vykresľujete po častiach, volajte priamo `$this->inner->render($form, 'begin')` a podobne.
 
+## Polia na dátum a čas dostanú `form-control` {#date-and-time-inputs-get-form-control}
+
+`addDate()`, `addTime()` a `addDateTime()` (`Nette\Forms\Controls\DateTimeControl`) teraz vo všetkých troch vykresľovačoch dostanú triedu `form-control`, takže ich Bootstrap 3 naštýluje ako textové polia ([#33](https://github.com/tomaj/nette-bootstrap-form/issues/33)). Je to jediná zmena vo vykreslenom HTML.
+
+Predtým (2.x):
+
+```html
+<input type="date" name="from" id="frm-from">
+```
+
+Teraz (3.0):
+
+```html
+<input type="date" name="from" class="form-control" id="frm-from">
+```
+
+Ak ste triedu pridávali sami (`->setHtmlAttribute('class', 'form-control')`), toto volanie môžete odstrániť; ak ho necháte, nič sa nestane, trieda sa nepridá dvakrát. Ak ste sa spoliehali na úzky predvolený vzhľad prehliadača, nastavte šírku vo vlastnom CSS alebo pole vykreslite ručne. Aktualizujte HTML snapshoty formulárov s týmito poľami. `addColor()` sa nemení: stále nedostane žiadnu triedu, pretože Bootstrap 3 nemá štýl pre výber farby.
+
 ## Po prechode {#after-upgrading}
 
-- Spustite testy formulárov alebo porovnajte niekoľko vykreslených formulárov pred a po: HTML musí byť rovnaké. Ako si ho uložiť ako snapshot, ukazuje kapitola [Testovanie formulárov](/sk/guide/testing).
+- Spustite testy formulárov alebo porovnajte niekoľko vykreslených formulárov pred a po: HTML musí byť rovnaké, okrem `class="form-control"` na poliach s dátumom a časom. Ako si ho uložiť ako snapshot, ukazuje kapitola [Testovanie formulárov](/sk/guide/testing).
 - Ak ste dedili renderer, aby ste zmenili `$wrappers`, [referencia konfigurácie](/sk/guide/configuration) uvádza všetky kľúče.
 
 Úplný zoznam zmien je v [zozname zmien](/sk/changelog).
